@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Radar Prototype</title>
+    <link href="css/simple-sidebar.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+
+    <script src="js/jquery-3.2.1.min.js"></script>
+
+</head>
+<body>
+<div id="wrapper">
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <li class="sidebar-brand">
+                <a href="#" onclick="clearRadar()"><b>Welcome to Tech Radar!</b></a>
+            </li>
+            <li>
+                <a href="#" onclick="populateRadar(1)"> Technology 1 </a>
+            </li>
+            <li>
+                <a href="#" onclick="populateRadar(2)"> Technology 2 </a>
+            </li>
+            <li>
+                <a href="#" onclick="populateRadar(3)"> Technology 3 </a>
+            </li>
+            <li>
+                <a href="#" onclick="populateRadar(4)"> Technology 4 </a>
+            </li>
+        </ul>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <div id="page-content-wrapper">
+        <div id="right">
+            <ul id="list">
+
+            </ul>
+        </div>
+
+        <div id="left">
+            <svg id="radar" viewBox="0 0 10 10" width="50%" height="50%" preserveAspectRatio="xMidYMin meet" xlmns="http://www.w3.org/2000/svg">
+                <circle id="droppable1" cx="5" cy="5" r="5" fill="#924343"></circle>
+                <circle id="droppable2" cx="5" cy="5" r="4" fill="#F3E8E8"></circle>
+                <circle id="droppable3" cx="5" cy="5" r="3" fill="#E5C904"></circle>
+                <circle id="droppable4" cx="5" cy="5" r="2" fill="#016C0E"></circle>
+            </svg>
+        </div>
+
+        <br>
+        <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Hide/Show Menu</a>
+
+    </div>
+</div>
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/customScript.js"></script>
+</body>
+</html>
