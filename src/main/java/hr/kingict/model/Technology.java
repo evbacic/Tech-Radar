@@ -14,7 +14,7 @@ public class Technology {
     private String description;
     @ManyToOne
     @JoinColumn(name = "tech_group_id")
-    private Tech_Group techGroup;
+    private TechGroup techGroup;
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
@@ -22,7 +22,7 @@ public class Technology {
     public Technology() {
     }
 
-    public Technology(String name, String description, Tech_Group techGroup, Category category) {
+    public Technology(String name, String description, TechGroup techGroup, Category category) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -54,11 +54,11 @@ public class Technology {
         this.description = description;
     }
 
-    public Tech_Group getTechGroup() {
+    public TechGroup getTechGroup() {
         return techGroup;
     }
 
-    public void setTechGroup(Tech_Group techGroup) {
+    public void setTechGroup(TechGroup techGroup) {
         this.techGroup = techGroup;
     }
 

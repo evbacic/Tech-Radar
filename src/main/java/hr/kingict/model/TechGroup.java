@@ -7,7 +7,8 @@ import java.util.List;
  * Created by luka.crnjakovic on 2.6.2017..
  */
 @Entity
-public class Tech_Group {
+@Table(name = "tech_group")
+public class TechGroup {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -16,10 +17,10 @@ public class Tech_Group {
     @OneToMany(mappedBy = "techGroup", cascade = CascadeType.ALL)
     private List<Technology> technologyList;
 
-    public Tech_Group() {
+    public TechGroup() {
     }
 
-    public Tech_Group(String name, String description) {
+    public TechGroup(String name, String description) {
         this.name = name;
         this.description = description;
     }
