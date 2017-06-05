@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+</head>
+<body>
+<div id="view">
+    <div id="right">
+        <ul class="list">
+
+        </ul>
+    </div>
+    <div id="left">
+        <svg viewBox="0 0 10 10" width="50%" preserveAspectRatio="xMidYMin meet" xlmns="http://www.w3.org/2000/svg">
+            <circle id="droppable1" cx="5" cy="5" r="5" fill="#962D3E"></circle>
+            <circle id="droppable2" cx="5" cy="5" r="4" fill="#F2EBC7"></circle>
+            <circle id="droppable3" cx="5" cy="5" r="3" fill="#343642"></circle>
+            <circle id="droppable4" cx="5" cy="5" r="2" fill="#348899"></circle>
+        </svg>
+    </div>
+</div>
+
+
+<script>
+    var counter = 1;
+    $(function(){
+        svg = d3.select("svg");
+        var offset = -0.2;
+        center = 5 + offset;
+        populateCircle(4.5, center, 4);
+        populateCircle(3.5, center, 5);
+        populateCircle(2.5, center, 3);
+        populateCircle(1.5, center, 3);
+        populateCircle(0.5, center, 4);
+    });
+    function populateCircle (r, c, items){
+        var angle = (2*Math.PI)/items
+        for(var i = 1; i<=items; i++){
+            var xMove = c + r*(Math.cos(i*angle));
+            var yMove = c - r*(Math.sin(i*angle));
+            addItem(xMove, yMove, counter+"");
+            counter++;
+        }
+    }
+    function addItem (x, y, txt){
+        var g = svg.append("g")
+            .attr("id", txt)
+            .on("mouseover", function(){
+                handleHover(g, txt);
+            })
+            .on("mouseout", function(){
+               handleHoverOut(g, txt);
+            });
+        var rect = g.append("rect")
+            .attr("x", x)
+            .attr("y", y)
+            .attr("width", 0.4)
+            .attr("height", 0.4)
+            .attr("fill", "#000");
+        var text = g.append("text")
+            .attr("x", x + 0.1)
+            .attr("y", y + 0.25)
+            .attr("fill", "#fff")
+            .text(txt)
+            .attr("overflow", "visible")
+            .attr("font-size", 0.2);
+        $("ul").append("<li id='"+counter+"'>" + txt + "</li>");
+    }
+    function handleHover (rect, num){
+        rect.attr("opacity", 0.75);
+        $("#" + num).css("background-color", "green");
+    }
+    function handleHoverOut(rect, num){
+        rect.attr("opacity", 1.0);
+        $("#" + num).css("background-color", "white");
+    }
+</script>
+</body>
+</html>
