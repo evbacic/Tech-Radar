@@ -1,31 +1,32 @@
 package hr.kingict.controller;
 
+import com.google.gson.Gson;
 import hr.kingict.model.TechGroup;
 import hr.kingict.model.Technology;
 import hr.kingict.repository.TechGroupRepository;
 import hr.kingict.repository.TechnologyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * Created by luka.crnjakovic on 5.6.2017..
  */
-@RestController
+@Controller
 public class Test {
 
     @Autowired
     TechnologyRepository technologyRepository;
 
-    @Autowired
-    TechGroupRepository techGroupRepository;
-
-    @RequestMapping("/test")
-    public String test(){
-        String output = "";
-        for(Technology tg: techGroupRepository.findOne(1L).getTechnologyList()){
-            output += tg.getName() + ", " + tg.getDescription() + " || ";
-        }
-        return output;
+    @GetMapping("/radar")
+    public String test(Model model){
+        List<Technology> tech = technologyRepository.findAll();
+        model.addAttribute("techList", tech);
+        return "test";
     }
 }

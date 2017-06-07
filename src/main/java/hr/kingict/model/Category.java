@@ -1,18 +1,24 @@
 package hr.kingict.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by luka.crnjakovic on 2.6.2017..
  */
 @Entity
-public class Category {
+public class Category implements Serializable{
+    private static final long serialVersionUID = -8745726839503998411L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Technology> technologyList;
 
     public Category() {

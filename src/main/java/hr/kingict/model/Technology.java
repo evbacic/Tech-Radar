@@ -1,12 +1,16 @@
 package hr.kingict.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by luka.crnjakovic on 2.6.2017..
  */
 @Entity
-public class Technology {
+public class Technology implements Serializable{
+    private static final long serialVersionUID = 421139459241691794L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -14,9 +18,11 @@ public class Technology {
     private String description;
     @ManyToOne
     @JoinColumn(name = "tech_group_id")
+    //@JsonBackReference
     private TechGroup techGroup;
     @ManyToOne
     @JoinColumn(name = "category_id")
+    //@JsonBackReference
     private Category category;
 
     public Technology() {
@@ -68,5 +74,10 @@ public class Technology {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    @Override
+    public String toString(){
+        return "ID: " + getId() + "\n" + "Name: " + getName() + "\n" + "---------------";
     }
 }

@@ -1,6 +1,10 @@
 package hr.kingict.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -8,13 +12,15 @@ import java.util.List;
  */
 @Entity
 @Table(name = "tech_group")
-public class TechGroup {
+public class TechGroup implements Serializable{
+    private static final long serialVersionUID = -6209291039171813639L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
     private String description;
     @OneToMany(mappedBy = "techGroup", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Technology> technologyList;
 
     public TechGroup() {
