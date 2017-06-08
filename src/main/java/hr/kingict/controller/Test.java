@@ -24,9 +24,17 @@ public class Test {
     TechnologyRepository technologyRepository;
 
     @GetMapping("/radar")
-    public String test(Model model){
-        List<Technology> tech = technologyRepository.findAll();
-        model.addAttribute("techList", tech);
+    public String test(){
         return "test";
+    }
+
+    @GetMapping("/add")
+    public String add(){
+        return "create";
+    }
+
+    @GetMapping("/update")
+    public String update(){
+        return "modify";
     }
 }
