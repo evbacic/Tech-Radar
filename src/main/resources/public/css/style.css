@@ -20,11 +20,7 @@
         height: 50vh;
     }
 }
-@media only screen and (min-width: 1260px){
-    #right {
-        height: 75vh;
-    }
-}
+
 
 #right ul {
     list-style-type: none;

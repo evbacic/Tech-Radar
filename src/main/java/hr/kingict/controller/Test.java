@@ -37,4 +37,9 @@ public class Test {
     public String update(){
         return "modify";
     }
+
+    @GetMapping("/home")
+    public String home(){
+        return "index";
+    }
 }

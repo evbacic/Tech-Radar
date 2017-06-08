@@ -7,6 +7,7 @@
 #right {
     float: right;
     margin-right: 5%;
+    padding-top: 1em;
     overflow-y: auto;
     height: 20vh;
     width: 25%;
@@ -19,11 +20,7 @@
         height: 50vh;
     }
 }
-@media only screen and (min-width: 1260px){
-    #right {
-        height: 75vh;
-    }
-}
+
 
 ul {
     list-style-type: none;

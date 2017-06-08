@@ -1,12 +1,11 @@
-<!doctype html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Tech Radar Prototype</title>
-    <link href="css/simple-sidebar.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href="simple-sidebar.css" rel="stylesheet"/>
+    <link href="style.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
     <script src="https://d3js.org/d3.v4.min.js"></script>
 
     <script src="js/jquery-3.2.1.min.js"></script>
@@ -18,13 +17,13 @@
     <div id="sidebar-wrapper">
         <ul class="sidebar-nav">
             <li class="sidebar-brand">
-                <a href="#" onclick="clearRadar()"><b> to Tech Radar!</b></a>
+                <a href="#" onclick="clearRadar()"><b>Welcome to Tech Radar!</b></a>
             </li>
             <li>
-                <a href="#" onclick="populateRadar(1)"> Technology 1 </a>
+                <a href="#" onclick="generatePage()"> Technology 1 </a>
             </li>
             <li>
-                <a href="#" onclick="populateRadar(2)"> Technology 2 </a>
+                <a href="#" onclick="generatePage()"> Technology 2 </a>
             </li>
             <li>
                 <a href="#" onclick="populateRadar(3)"> Technology 3 </a>
@@ -51,14 +50,12 @@
                 <circle id="droppable4" cx="5" cy="5" r="2" fill="#016C0E"></circle>
             </svg>
         </div>
-
-        <br>
+        <br/>
         <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Hide/Show Menu</a>
-
     </div>
 </div>
 <script src="js/jquery-3.2.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
-<script src="js/customScript.js"></script>
+<script src="customScript.js"></script>
 </body>
 </html>
