@@ -29,4 +29,9 @@ public class Test {
         model.addAttribute("techList", tech);
         return "test";
     }
+
+    @GetMapping("/home")
+    public String home(){
+        return "index";
+    }
 }
