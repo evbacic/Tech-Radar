@@ -111,3 +111,8 @@ ul {
     float: right;
     overflow-y: auto;
 }
+
+#ex1 {
+    display: none;
+    z-index: 1000;
+}

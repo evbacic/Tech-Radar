@@ -1,8 +1,10 @@
 package hr.kingict.controller;
 
 import com.google.gson.Gson;
+import hr.kingict.model.Category;
 import hr.kingict.model.TechGroup;
 import hr.kingict.model.Technology;
+import hr.kingict.repository.CategoryRepository;
 import hr.kingict.repository.TechGroupRepository;
 import hr.kingict.repository.TechnologyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +23,10 @@ import java.util.List;
 public class Test {
 
     @Autowired
-    TechnologyRepository technologyRepository;
+    TechGroupRepository techGroupRepository;
+
+    @Autowired
+    CategoryRepository categoryRepository;
 
     @GetMapping("/radar")
     public String test(){
@@ -29,7 +34,11 @@ public class Test {
     }
 
     @GetMapping("/add")
-    public String add(){
+    public String add(Model model){
+        List<TechGroup> radarList = techGroupRepository.findAll();
+        List<Category> catList = categoryRepository.findAll();
+        model.addAttribute("radars", radarList);
+        model.addAttribute("cats", catList);
         return "create";
     }
 
