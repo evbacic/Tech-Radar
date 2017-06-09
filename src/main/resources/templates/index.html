@@ -8,30 +8,32 @@
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
     <script src="https://d3js.org/d3.v4.min.js"></script>
 
-    <script src="js/jquery-3.2.1.min.js"></script>
-
 </head>
 <body>
 <div id="wrapper">
     <!-- Sidebar -->
+
     <div id="sidebar-wrapper">
+
+
         <ul class="sidebar-nav">
             <li class="sidebar-brand">
                 <a href="#" onclick="clearRadar()"><b>Welcome to Tech Radar!</b></a>
             </li>
             <li>
-                <a href="#" onclick="generatePage()"> Technology 1 </a>
+                <a href="#" onclick="generatePage(1)"> Java </a>
             </li>
             <li>
-                <a href="#" onclick="generatePage()"> Technology 2 </a>
+                <a href="#" onclick="generatePage(2)"> .Net </a>
             </li>
             <li>
-                <a href="#" onclick="populateRadar(3)"> Technology 3 </a>
+                <a href="#" onclick="generatePage(3)"> Front End </a>
             </li>
             <li>
-                <a href="#" onclick="populateRadar(4)"> Technology 4 </a>
+                <a href="#" onclick="generatePage(4)"> Platforms and Methodologies </a>
             </li>
         </ul>
+
     </div>
     <!-- /#sidebar-wrapper -->
 
@@ -43,7 +45,19 @@
         </div>
 
         <div id="left">
-            <svg id="radar" viewBox="0 0 10 10" width="50%" height="50%" preserveAspectRatio="xMidYMin meet" xlmns="http://www.w3.org/2000/svg">
+            <button type="button" class="btn btn-default" data-toggle="collapse" data-target="#sidebar-wrapper">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <h1 id="radarTitle"> Select a Radar... </h1>
+            <div id="colors">
+                <p style="background-color: #924343"> Outgoing </p>
+                <p style="background-color: #F3E8E8"> Should Pilot </p>
+                <p style="background-color: #E5C904"> Incoming </p>
+                <p style="background-color: #016C0E"> In Focus </p>
+            </div>
+            <svg id="radar" viewBox="0 0 10 10" width="50%" height="75%" preserveAspectRatio="xMidYMin meet" xlmns="http://www.w3.org/2000/svg">
                 <circle id="droppable1" cx="5" cy="5" r="5" fill="#924343"></circle>
                 <circle id="droppable2" cx="5" cy="5" r="4" fill="#F3E8E8"></circle>
                 <circle id="droppable3" cx="5" cy="5" r="3" fill="#E5C904"></circle>
