@@ -26,7 +26,7 @@ function generatePage(group_id){
                 }
             }
 
-            document.getElementById("radarTitle").innerHTML = "" + groupResultData[1].techGroup.name + " Tech Radar";
+            document.getElementById("radarTitle").innerHTML = ' <span id="toggle" style="font-size:30px;cursor:pointer" onclick="closeNav()">&#10060;</span> ' + groupResultData[1].techGroup.name + " Tech Radar";
             for(var x = 0; x < groupResultData.length; x++){
                 var temp = groupResultData[x];
                 switch(temp.category.id){
@@ -84,7 +84,7 @@ function addItem (x, y, temp){
     var rect = g.append("rect")
         .attr("x", x)
         .attr("y", y)
-        .attr("width", 0.4)
+        .attr("width", 0.47)
         .attr("height", 0.4)
         .attr("fill", "#000");
     var text = g.append("text")
@@ -113,4 +113,16 @@ function clearRadar(){
     $("#list").empty();
 }
 
+function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+    document.getElementById("page-content-wrapper").style.marginLeft = "250px";
+    document.getElementById("toggle").setAttribute("onclick", "closeNav()");
+    document.getElementById("toggle").innerHTML = "&#10060;";
+}
 
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("page-content-wrapper").style.marginLeft= "0";
+    document.getElementById("toggle").setAttribute("onclick", "openNav()");
+    document.getElementById("toggle").innerHTML = "&#9776;";
+}
