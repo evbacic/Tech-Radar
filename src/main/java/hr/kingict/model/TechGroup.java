@@ -15,7 +15,7 @@ import java.util.List;
 public class TechGroup implements Serializable{
     private static final long serialVersionUID = -6209291039171813639L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String description;
@@ -27,6 +27,7 @@ public class TechGroup implements Serializable{
     }
 
     public TechGroup(String name, String description) {
+        super();
         this.name = name;
         this.description = description;
     }

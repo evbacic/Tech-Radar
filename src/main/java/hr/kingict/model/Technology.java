@@ -1,6 +1,7 @@
 package hr.kingict.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -12,7 +13,7 @@ import java.io.Serializable;
 public class Technology implements Serializable{
     private static final long serialVersionUID = 421139459241691794L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String description;
@@ -29,7 +30,7 @@ public class Technology implements Serializable{
     }
 
     public Technology(String name, String description, TechGroup techGroup, Category category) {
-        this.id = id;
+        super();
         this.name = name;
         this.description = description;
         this.techGroup = techGroup;

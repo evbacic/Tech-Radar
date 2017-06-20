@@ -14,7 +14,7 @@ import java.util.List;
 public class Category implements Serializable{
     private static final long serialVersionUID = -8745726839503998411L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
@@ -25,6 +25,7 @@ public class Category implements Serializable{
     }
 
     public Category(Long id, String name) {
+        super();
         this.id = id;
         this.name = name;
     }

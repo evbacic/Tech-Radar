@@ -1,19 +1,15 @@
 package hr.kingict.controller;
 
-import com.google.gson.Gson;
-import hr.kingict.model.Category;
-import hr.kingict.model.TechGroup;
-import hr.kingict.model.Technology;
+import hr.kingict.model.*;
 import hr.kingict.repository.CategoryRepository;
 import hr.kingict.repository.TechGroupRepository;
 import hr.kingict.repository.TechnologyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -21,6 +17,9 @@ import java.util.List;
  */
 @Controller
 public class Test {
+
+    @Autowired
+    TechnologyRepository technologyRepository;
 
     @Autowired
     TechGroupRepository techGroupRepository;
@@ -37,18 +36,42 @@ public class Test {
     public String add(Model model){
         List<TechGroup> radarList = techGroupRepository.findAll();
         List<Category> catList = categoryRepository.findAll();
+        model.addAttribute("technology", new Technology());
         model.addAttribute("radars", radarList);
         model.addAttribute("cats", catList);
         return "create";
     }
 
-    @GetMapping("/update")
-    public String update(){
+    @PostMapping("/add")
+    public String submitForm(@ModelAttribute Technology technology, Model model){
+        List<TechGroup> radarList = techGroupRepository.findAll();
+        List<Category> catList = categoryRepository.findAll();
+        model.addAttribute("radars", radarList);
+        model.addAttribute("cats", catList);
+        Technology newTech = new Technology(technology.getName(), technology.getDescription(), technology.getTechGroup(), technology.getCategory());
+        System.out.println(newTech.toString());
+        technologyRepository.save(newTech);
+        return "create";
+    }
+
+    @GetMapping("/update/{radarId}")
+    public String update(@PathVariable int radarId, Model model){
+        model.addAttribute("radarId", radarId);
         return "modify";
     }
 
     @GetMapping("/home")
     public String home(){
         return "index";
+    }
+
+    @RequestMapping(value="/api/category-updates",method=RequestMethod.POST)
+    public  @ResponseBody void  getSearchUserProfiles(@RequestBody List<CategoryUpdate> list, HttpServletRequest request) {
+
+        for(int i = 0; i<list.size(); i++){
+            Technology t = technologyRepository.findOne(list.get(i).getId());
+            t.setCategory(categoryRepository.findOne(list.get(i).getCatId()));
+            technologyRepository.saveAndFlush(t);
+        }
     }
 }
