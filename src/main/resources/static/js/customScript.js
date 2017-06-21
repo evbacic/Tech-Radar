@@ -1,10 +1,14 @@
 /**
  * Created by emil-vid.bacic on 2.6.2017..
  */
-
+$(function () {
+   $("#updateButton").hide();
+});
 function generatePage(group_id){
     clearRadar();
-
+    $("#updateButton").show().on("click", function(){
+        window.location.href = "/update/"+group_id;
+    });
     var cat1 = [];
     var cat2 = [];
     var cat3 = [];

@@ -57,6 +57,23 @@ public class Test {
     @GetMapping("/update/{radarId}")
     public String update(@PathVariable int radarId, Model model){
         model.addAttribute("radarId", radarId);
+        List<TechGroup> radarList = techGroupRepository.findAll();
+        List<Category> catList = categoryRepository.findAll();
+        model.addAttribute("technology", new Technology());
+        model.addAttribute("radars", radarList);
+        model.addAttribute("cats", catList);
+        return "modify";
+    }
+
+    @PostMapping("/update/{radarId}")
+    public String submitForm(@PathVariable int radarId, @ModelAttribute Technology technology, Model model){
+        model.addAttribute("radarId", radarId);
+        List<TechGroup> radarList = techGroupRepository.findAll();
+        List<Category> catList = categoryRepository.findAll();
+        model.addAttribute("radars", radarList);
+        model.addAttribute("cats", catList);
+        Technology newTech = new Technology(technology.getName(), technology.getDescription(), technology.getTechGroup(), technology.getCategory());
+        technologyRepository.save(newTech);
         return "modify";
     }
 
@@ -66,12 +83,18 @@ public class Test {
     }
 
     @RequestMapping(value="/api/category-updates",method=RequestMethod.POST)
-    public  @ResponseBody void  getSearchUserProfiles(@RequestBody List<CategoryUpdate> list, HttpServletRequest request) {
+    public @ResponseBody void  getSearchUserProfiles(@RequestBody List<CategoryUpdate> list, HttpServletRequest request) {
 
         for(int i = 0; i<list.size(); i++){
             Technology t = technologyRepository.findOne(list.get(i).getId());
             t.setCategory(categoryRepository.findOne(list.get(i).getCatId()));
             technologyRepository.saveAndFlush(t);
         }
+    }
+
+    @RequestMapping(value="/api/delete",method=RequestMethod.POST)
+    public @ResponseBody void  deleteTechnology(@RequestBody TechnologyToDelete tech, HttpServletRequest request) {
+        Technology t = technologyRepository.findOne(tech.getTechId());
+        technologyRepository.delete(t);
     }
 }

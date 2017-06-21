@@ -3,23 +3,88 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>Droppable 2 TEST</title>
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
     <link rel="stylesheet" th:href="@{/css/style.css}"/>
 
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.12.4.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
     <script type="text/javascript" th:src="@{/modifyScript.js}"></script>
 </head>
 <!--/*@thymesVar id="radarId" type="int"*/-->
 <body th:onload="'generatePage(\''+${radarId}+'\');'">
-<div class="row">
-    <div class="cell lefty" id="adopt">Adopt</div>
-    <div class="cell righty" id="incoming">Incoming</div>
+<div id="modal1" class="modal">
+    <div class="modal-content">
+        <h4>Add Technology</h4>
+        <!--/*@thymesVar id="technology" type="hr.kingict.model.Technology"*/-->
+        <form method="POST" th:object="${technology}" class="newTech" th:action="@{/update/{path}(path=${radarId})}">
+            <table>
+                <tr>
+                    <td>Name:</td>
+                    <td>
+                        <input type="text" th:field="*{name}" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Description:</td>
+                    <td>
+                        <input type="text" th:field="*{description}" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Technology Group:</td>
+                    <td>
+                        <select th:field="*{techGroup}">
+                            <!--/*@thymesVar id="radars" type="hr.kingict.model.TechGroup"*/-->
+                            <option th:each="tech : ${radars}"
+                                    th:value="${tech.id}"
+                                    th:text="${tech.name}"></option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Category:</td>
+                    <td>
+                        <select th:field="*{category}">
+                            <!--/*@thymesVar id="cats" type="hr.kingict.model.Category"*/-->
+                            <option th:each="cat : ${cats}"
+                                    th:value="${cat.id}"
+                                    th:text="${cat.name}"></option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" >
+                        <input type="submit" value="Add" class="btn btn-primary" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
 </div>
-<div class="row">
-    <div class="cell lefty" id="assess">Assess</div>
-    <div class="cell righty" id="hold">Hold</div>
+<div id="regionLeft">
+    <div class="row">
+        <div class="cell lefty" id="adopt">Adopt</div>
+        <div class="cell righty" id="incoming">Incoming</div>
+    </div>
+    <div class="row">
+        <div class="cell lefty" id="assess">Assess</div>
+        <div class="cell righty" id="hold">Hold</div>
+    </div>
 </div>
-<button type="button" class="btn btn-info btn-sm" th:onclick="'sendData();'">Update</button>
+<div id="regionRight">
+    <div class="cell" id="unused">Unused</div>
+</div>
+<div class="fixed-action-btn horizontal">
+    <a class="btn-floating btn-large red darken-4">
+        <i class="large material-icons">menu</i>
+    </a>
+    <ul>
+        <li><a class="btn-floating pulse" th:onclick="'sendData();'"><i class="material-icons">done_all</i></a></li>
+        <li><a class="btn-floating pulse modal-trigger" href="#modal1"><i class="material-icons">add</i></a></li>
+        <li><a class="btn-floating pulse" th:onclick="'clearData();'"><i class="material-icons">mode_edit</i></a></li>
+    </ul>
+</div>
 </body>
 </html>

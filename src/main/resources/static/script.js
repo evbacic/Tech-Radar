@@ -15,16 +15,16 @@ function generatePage(){
                 var temp = resultData[i];
                 switch(temp.category.id){
                     case 1:
-                        cat1.push(temp)
+                        cat1.push(temp);
                         break;
                     case 2:
-                        cat2.push(temp)
+                        cat2.push(temp);
                         break;
                     case 3:
-                        cat3.push(temp)
+                        cat3.push(temp);
                         break;
                     case 4:
-                        cat4.push(temp)
+                        cat4.push(temp);
                         break;
                 }
             }
@@ -44,12 +44,12 @@ function generatePage(){
         },
         error : function(jqXHR, textStatus, errorThrown) {
         },
-        timeout: 120000,
+        timeout: 120000
     });
 
 }
 function populateCircle (r, c, items){
-    var angle = (2*Math.PI)/items.length
+    var angle = (2*Math.PI)/items.length;
     for(var i = 1; i<=items.length; i++){
         var xMove = c + r*(Math.cos(i*angle));
         var yMove = c - r*(Math.sin(i*angle));

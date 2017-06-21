@@ -104,21 +104,19 @@ ul {
 
 .cell {
     background-color: #636c72;
-    width: 49.5%;
-    height: 40vh;
+    width: 49%;
+    height: 42vh;
     border-radius: 5px;
     margin-bottom: 15px;
-
+    overflow-y: auto;
 }
 
 .lefty {
     float: left;
-    overflow-y: auto;
 }
 
 .righty {
     float: right;
-    overflow-y: auto;
 }
 
 #ex1 {
@@ -176,4 +174,27 @@ ul {
     border-radius: 20%;
     padding: 0.04em;
 
+}
+
+#regionLeft {
+    float: left;
+    width: 64%;
+    margin-left: 30px;
+}
+
+#regionRight {
+    float: right;
+    width: 32%;
+}
+
+#unused {
+    width: 95%;
+    height: 87.75vh;
+}
+
+#dropDelete{
+    background-color: #636c72;
+    float: left;
+    width: 10%;
+    height: 10vh;
 }

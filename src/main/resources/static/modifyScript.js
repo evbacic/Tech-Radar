@@ -1,4 +1,6 @@
 function generatePage(radarId) {
+    $('.modal').modal();
+    $('select').material_select();
     $.ajax({
         url: "/api/radar",
         type: "GET",
@@ -26,6 +28,21 @@ function generatePage(radarId) {
                 containment: "document",
                 connectWith: ".cell"
             });
+            $("li").append("<i class='material-icons righty deletes' style='cursor: pointer'>clear</i>");
+            $(".deletes").each(function () {
+                $(this).on("click", function () {
+                    $.ajax({
+                        type: "POST",
+                        contentType : 'application/json; charset=utf-8',
+                        dataType : 'json',
+                        url: "/api/delete",
+                        data: JSON.stringify({techId: $(this).parent().attr("id")}), // Note it is important
+                        success :function() {
+                            $(this).parent().remove();
+                        }
+                    });
+                })
+            });
         },
         error : function(jqXHR, textStatus, errorThrown) {
         },
@@ -35,9 +52,6 @@ function generatePage(radarId) {
 
 function sendData(){
     var data = [];
-    var a = [];
-    a[0] = 1;
-    a[1] = 2;
     $(".cell").find("li").each(function(){
        switch($(this).parent().attr("id")){
            case "adopt":
@@ -60,9 +74,16 @@ function sendData(){
         dataType : 'json',
         url: "/api/category-updates",
         data: JSON.stringify(data), // Note it is important
-        success :function(result) {
+        success :function() {
             alert("Update successful!");
         }
+    });
+    window.location.href = "/home";
+}
+
+function clearData(){
+    $(".cell").find("li").each(function(){
+       $(this).appendTo("#unused");
     });
 }
 
