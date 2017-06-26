@@ -28,17 +28,17 @@ function generatePage(radarId) {
                 containment: "document",
                 connectWith: ".cell"
             });
-            $("li").append("<i class='material-icons righty deletes' style='cursor: pointer'>clear</i>");
+            $(".cell").find("li").append("<i class='material-icons righty deletes' style='cursor: pointer'>clear</i>");
             $(".deletes").each(function () {
                 $(this).on("click", function () {
+                    var nodeIdToDelete = $(this).parent().attr("id");
                     $.ajax({
                         type: "POST",
                         contentType : 'application/json; charset=utf-8',
-                        dataType : 'json',
                         url: "/api/delete",
-                        data: JSON.stringify({techId: $(this).parent().attr("id")}), // Note it is important
+                        data: JSON.stringify({techId: nodeIdToDelete}), // Note it is important
                         success :function() {
-                            $(this).parent().remove();
+                            $(".cell").find("#"+nodeIdToDelete).remove();
                         }
                     });
                 })
@@ -50,7 +50,7 @@ function generatePage(radarId) {
     });
 }
 
-function sendData(){
+function sendData(radarId){
     var data = [];
     $(".cell").find("li").each(function(){
        switch($(this).parent().attr("id")){
@@ -71,14 +71,13 @@ function sendData(){
     $.ajax({
         type: "POST",
         contentType : 'application/json; charset=utf-8',
-        dataType : 'json',
         url: "/api/category-updates",
         data: JSON.stringify(data), // Note it is important
         success :function() {
             alert("Update successful!");
+            window.location.href = "/home/" + radarId;
         }
     });
-    window.location.href = "/home";
 }
 
 function clearData(){

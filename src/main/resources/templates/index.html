@@ -4,23 +4,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Tech Radar Prototype</title>
     <!--<link href="css/simple-sidebar.css" rel="stylesheet"/>-->
-    <link href="css/style.css" rel="stylesheet"/>
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css"/>
     <script src="https://d3js.org/d3.v4.min.js"></script>
 
 </head>
-<body>
+<!--/*@thymesVar id="radarId" type="int"*/-->
+<body th:onload="'generatePage(\''+${radarId}+'\');'">
 <div id="wrapper">
     <!-- Sidebar -->
 
     <!-- /#sidebar-wrapper -->
     <div id="mySidenav" class="sidenav">
         <!--<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>-->
-        <a href="#" onclick="generatePage(1)">Java </a>
-        <a href="#" onclick="generatePage(2)"> .Net </a>
-        <a href="#" onclick="generatePage(3)"> Front End </a>
-        <a href="#" onclick="generatePage(4)"> Platforms and Methodologies </a>
+        <a th:href="@{/home/1}">Java </a>
+        <a th:href="@{/home/2}"> .Net </a>
+        <a th:href="@{/home/3}"> Front End </a>
+        <a th:href="@{/home/4}"> Platforms and Methodologies </a>
     </div>
 
 
@@ -51,10 +52,10 @@
         <br/>
     </div>
 
-<script src="js/jquery-3.2.1.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
+<script th:src="@{/js/bootstrap.js}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
-<script src="js/customScript.js"></script>
+<script th:src="@{/js/customScript.js}"></script>
 </body>
 </html>

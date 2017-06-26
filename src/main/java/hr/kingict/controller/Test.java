@@ -78,7 +78,14 @@ public class Test {
     }
 
     @GetMapping("/home")
-    public String home(){
+    public String home(Model model){
+        model.addAttribute("radarId", 0);
+        return "index";
+    }
+
+    @GetMapping("/home/{radarId}")
+    public String home(@PathVariable int radarId, Model model){
+        model.addAttribute("radarId", radarId);
         return "index";
     }
 
