@@ -104,4 +104,6 @@ public class Test {
         Technology t = technologyRepository.findOne(tech.getTechId());
         technologyRepository.delete(t);
     }
+
+
 }

@@ -16,6 +16,7 @@
 #right {
     float: right;
     margin-right: 5%;
+    margin-top: 4em;
     padding-top: 1em;
     overflow-y: auto;
     height: 20vh;
