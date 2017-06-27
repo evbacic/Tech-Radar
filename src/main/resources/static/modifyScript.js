@@ -21,6 +21,9 @@ function generatePage(radarId) {
                         case 4:
                             $("#hold").append("<li class='ui-state-default' id='" + resultData[i].id + "'>" + resultData[i].name + "</li>");
                             break;
+                        case 5:
+                            $("#unused").append("<li class='ui-state-default' id='" + resultData[i].id + "'>" + resultData[i].name + "</li>");
+                            break;
                     }
                 }
             }
@@ -66,6 +69,9 @@ function sendData(radarId){
            case "hold":
                data.push(new Object({id: $(this).attr("id"), catId: 4}));
                break;
+           case "unused":
+               data.push(new Object({id: $(this).attr("id"), catId: 5}));
+               console.log($(this).attr("id"));
        }
     });
     $.ajax({

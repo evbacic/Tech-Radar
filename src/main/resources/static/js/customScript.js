@@ -66,7 +66,7 @@ function generatePage(radarId){
             },
             error : function(jqXHR, textStatus, errorThrown) {
             },
-            timeout: 120000,
+            timeout: 120000
         });
     }
 }
