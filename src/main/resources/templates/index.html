@@ -1,4 +1,5 @@
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -42,7 +43,7 @@
                 <p style="background-color: #E5C904"> Incoming </p>
                 <p style="background-color: #016C0E"> In Focus </p>
             </div>
-            <button type="button" id="updateButton" class="btn btn-info">Update Radar</button>
+            <button sec:authorize="hasRole('ROLE_ADMIN')" type="button" id="updateButton" class="btn btn-info">Update Radar</button>
             <svg id="radar" viewBox="0 0 10 10" width="50%" height="75%" preserveAspectRatio="xMidYMin meet" xlmns="http://www.w3.org/2000/svg">
                 <circle id="droppable1" cx="5" cy="5" r="5" fill="#924343"></circle>
                 <circle id="droppable2" cx="5" cy="5" r="4" fill="#F3E8E8"></circle>
