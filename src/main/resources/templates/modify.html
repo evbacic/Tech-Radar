@@ -18,18 +18,18 @@
     <div class="modal-content">
         <h4>Add Technology</h4>
         <!--/*@thymesVar id="technology" type="hr.kingict.model.Technology"*/-->
-        <form method="POST" th:object="${technology}" class="newTech" th:action="@{/update/{path}(path=${radarId})}">
+        <form id="myForm" method="POST" th:object="${technology}" class="newTech" th:action="@{/update/{path}(path=${radarId})}" >
             <table>
                 <tr>
                     <td>Name:</td>
                     <td>
-                        <input type="text" th:field="*{name}" />
+                        <input id="formName" type="text" th:field="*{name}" value=""/>
                     </td>
                 </tr>
                 <tr>
                     <td>Description:</td>
                     <td>
-                        <input type="text" th:field="*{description}" />
+                        <input type="text" id="formDesc" th:field="*{description}" value=""/>
                     </td>
                 </tr>
                 <tr>
@@ -56,7 +56,7 @@
                 </tr>
                 <tr>
                     <td colspan="2" >
-                        <input type="submit" value="Add" class="btn btn-primary" />
+                        <input type="button" value="Add" onclick="submitForm()" class="btn btn-primary"/>
                     </td>
                 </tr>
             </table>

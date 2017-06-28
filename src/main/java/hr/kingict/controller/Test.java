@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -66,7 +67,7 @@ public class Test {
     }
 
     @PostMapping("/update/{radarId}")
-    public String submitForm(@PathVariable int radarId, @ModelAttribute Technology technology, Model model){
+    public ModelAndView submitForm(@PathVariable int radarId, @ModelAttribute Technology technology, Model model){
         model.addAttribute("radarId", radarId);
         List<TechGroup> radarList = techGroupRepository.findAll();
         List<Category> catList = categoryRepository.findAll();
@@ -74,7 +75,7 @@ public class Test {
         model.addAttribute("cats", catList);
         Technology newTech = new Technology(technology.getName(), technology.getDescription(), technology.getTechGroup(), technology.getCategory());
         technologyRepository.save(newTech);
-        return "modify";
+        return new ModelAndView("redirect:/update/{radarId}");
     }
 
     @GetMapping("/home")

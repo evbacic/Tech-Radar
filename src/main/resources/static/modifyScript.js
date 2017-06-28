@@ -92,5 +92,26 @@ function clearData(){
     });
 }
 
+function clearForm(form){
+    form.reset();
+}
+
+function submitForm() {
+    var form = document.getElementById("myForm");
+    form.submit();
+    form.reset();
+    return false;
+}
+
+$("#myForm").submit(function(e){
+    e.preventDefault();
+    this.submit();
+
+    setTimeout(function() {
+        $('#formName').val('');
+        $('#formDesc').val('');
+    },100);
+});
+
 
 
