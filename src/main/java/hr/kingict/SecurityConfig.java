@@ -26,6 +26,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/login").anonymous().antMatchers("/**").authenticated().anyRequest().permitAll()
                 .and()
                 .csrf().disable();
+        http.headers().frameOptions().disable();
     }
 
     @Autowired
