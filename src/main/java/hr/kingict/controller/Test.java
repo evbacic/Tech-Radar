@@ -57,10 +57,8 @@ public class Test {
     @GetMapping("/update/{radarId}")
     public String update(@PathVariable int radarId, Model model){
         model.addAttribute("radarId", radarId);
-        List<TechGroup> radarList = techGroupRepository.findAll();
         List<Category> catList = categoryRepository.findAll();
         model.addAttribute("technology", new Technology());
-        model.addAttribute("radars", radarList);
         model.addAttribute("cats", catList);
         return "modify";
     }
@@ -68,11 +66,10 @@ public class Test {
     @PostMapping("/update/{radarId}")
     public String submitForm(@PathVariable int radarId, @ModelAttribute Technology technology, Model model){
         model.addAttribute("radarId", radarId);
-        List<TechGroup> radarList = techGroupRepository.findAll();
         List<Category> catList = categoryRepository.findAll();
-        model.addAttribute("radars", radarList);
         model.addAttribute("cats", catList);
-        Technology newTech = new Technology(technology.getName(), technology.getDescription(), technology.getTechGroup(), technology.getCategory());
+        TechGroup radarUsed = techGroupRepository.findOne(new Long(radarId));
+        Technology newTech = new Technology(technology.getName(), technology.getDescription(), radarUsed, technology.getCategory());
         technologyRepository.save(newTech);
         return "modify";
     }
@@ -103,6 +100,11 @@ public class Test {
     public @ResponseBody void  deleteTechnology(@RequestBody TechnologyToDelete tech, HttpServletRequest request) {
         Technology t = technologyRepository.findOne(tech.getTechId());
         technologyRepository.delete(t);
+    }
+
+    @RequestMapping(value = "/403", method = RequestMethod.GET)
+    public String getErrorPage(){
+        return "unauthorized";
     }
 
 
