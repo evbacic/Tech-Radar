@@ -23,10 +23,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout().logoutSuccessUrl("/login?logout=true").and()
                 .authorizeRequests()
                 .antMatchers("/css/**").permitAll()
-                .antMatchers("/login").anonymous().antMatchers("/**").authenticated().anyRequest().permitAll()
+                .antMatchers("/js/**").permitAll()
+                .antMatchers("/api/**").permitAll()
+                .antMatchers("/login").anonymous().antMatchers("/home/**").authenticated().anyRequest().permitAll()
+                .antMatchers("/update/**", "/h2").authenticated().anyRequest().hasRole("admin")
                 .and()
                 .csrf().disable();
-        http.headers().frameOptions().disable();
+                http.headers().frameOptions().disable();
     }
 
     @Autowired
