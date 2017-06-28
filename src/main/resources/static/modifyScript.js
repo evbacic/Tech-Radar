@@ -71,7 +71,6 @@ function sendData(radarId){
                break;
            case "unused":
                data.push(new Object({id: $(this).attr("id"), catId: 5}));
-               console.log($(this).attr("id"));
        }
     });
     $.ajax({
