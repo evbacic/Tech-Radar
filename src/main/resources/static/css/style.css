@@ -199,3 +199,8 @@ ul {
     width: 10%;
     height: 10vh;
 }
+
+#logoutbtn{
+    margin: 1em;
+    margin-left: 4em;
+}

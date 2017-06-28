@@ -26,7 +26,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/js/**").permitAll()
                 .antMatchers("/api/**").permitAll()
                 .antMatchers("/login").anonymous().antMatchers("/home/**").authenticated().anyRequest().permitAll()
-                .antMatchers("/update/**", "/h2").authenticated().anyRequest().hasRole("admin")
+                .antMatchers("/update/**", "/h2").authenticated().anyRequest().hasRole("ADMIN")
                 .and()
                 .csrf().disable();
                 http.headers().frameOptions().disable();
