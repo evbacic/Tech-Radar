@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Access Denied</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"/>
+    <style>
+        #centerErrorText {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            text-align: center;
+        }
+        body {
+            background-color: #8A0917;
+            color: #B8AE9C;
+            font-family: 'Roboto', sans-serif;
+        }
+        #warning {
+            font-size: 5em;
+        }
+        a {
+            text-decoration: none;
+            color: #2DB8B4;
+        }
+        a:hover {
+            color: #085859;
+        }
+    </style>
+</head>
+<body>
+    <div id="centerErrorText">
+        <i id="warning" class="material-icons">warning</i>
+        <h1>Access Denied!</h1>
+        <p>Looks like you're trying to access something you're not supposed to. Better go <a href="/home">home</a>.</p>
+    </div>
+</body>
+</html>

@@ -56,6 +56,7 @@ insert into category values(default, 'In Focus');
 insert into category values(default, 'Incoming');
 insert into category values(default, 'Should Pilot');
 insert into category values(default, 'Outgoing');
+insert into category values(default, 'Unused');
 
 //Java
 

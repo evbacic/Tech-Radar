@@ -23,24 +23,13 @@
                 <tr>
                     <td>Name:</td>
                     <td>
-                        <input id="formName" type="text" th:field="*{name}" value=""/>
+                        <input type="text" th:field="*{name}" required="required"/>
                     </td>
                 </tr>
                 <tr>
                     <td>Description:</td>
                     <td>
-                        <input type="text" id="formDesc" th:field="*{description}" value=""/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Technology Group:</td>
-                    <td>
-                        <select th:field="*{techGroup}">
-                            <!--/*@thymesVar id="radars" type="hr.kingict.model.TechGroup"*/-->
-                            <option th:each="tech : ${radars}"
-                                    th:value="${tech.id}"
-                                    th:text="${tech.name}"></option>
-                        </select>
+                        <input type="text" th:field="*{description}" required="required"/>
                     </td>
                 </tr>
                 <tr>
@@ -56,7 +45,7 @@
                 </tr>
                 <tr>
                     <td colspan="2" >
-                        <input type="button" value="Add" onclick="submitForm()" class="btn btn-primary"/>
+                        <input type="submit" value="Add" class="btn btn-primary" />
                     </td>
                 </tr>
             </table>
