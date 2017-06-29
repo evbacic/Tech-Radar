@@ -27,33 +27,6 @@ public class Test {
     @Autowired
     CategoryRepository categoryRepository;
 
-    @GetMapping("/radar")
-    public String test(){
-        return "test";
-    }
-
-    @GetMapping("/add")
-    public String add(Model model){
-        List<TechGroup> radarList = techGroupRepository.findAll();
-        List<Category> catList = categoryRepository.findAll();
-        model.addAttribute("technology", new Technology());
-        model.addAttribute("radars", radarList);
-        model.addAttribute("cats", catList);
-        return "create";
-    }
-
-    @PostMapping("/add")
-    public String submitForm(@ModelAttribute Technology technology, Model model){
-        List<TechGroup> radarList = techGroupRepository.findAll();
-        List<Category> catList = categoryRepository.findAll();
-        model.addAttribute("radars", radarList);
-        model.addAttribute("cats", catList);
-        Technology newTech = new Technology(technology.getName(), technology.getDescription(), technology.getTechGroup(), technology.getCategory());
-        System.out.println(newTech.toString());
-        technologyRepository.save(newTech);
-        return "create";
-    }
-
     @GetMapping("/update/{radarId}")
     public String update(@PathVariable int radarId, Model model){
         model.addAttribute("radarId", radarId);
@@ -70,8 +43,8 @@ public class Test {
         model.addAttribute("cats", catList);
         TechGroup radarUsed = techGroupRepository.findOne(new Long(radarId));
         Technology newTech = new Technology(technology.getName(), technology.getDescription(), radarUsed, technology.getCategory());
-        technologyRepository.save(newTech);
-        return "modify";
+        technologyRepository.saveAndFlush(newTech);
+        return "redirect:/update/{radarId}";
     }
 
     @GetMapping("/home")

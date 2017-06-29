@@ -6,6 +6,7 @@ drop table if exists user_role;
 drop sequence if exists technology_id_seq;
 drop sequence if exists category_id_seq;
 drop sequence if exists tech_group_id_seq;
+drop sequence if exists technology_serial;
 
 create table tech_group(
    id int identity primary key,
@@ -21,14 +22,16 @@ create table category(
 
 
 create table technology(
-   id int identity primary key,
+   id int primary key not null,
    name varchar(50) not null,
    description varchar(5000) not null,
    tech_group_id int  not null,
-   category_id int not null, 
+   category_id int not null,
    foreign key(tech_group_id) references tech_group(id),
    foreign key(category_id) references category(id)
 );
+create sequence technology_serial nocache;
+alter table technology alter column id int default nextval('technology_serial');
 
 create table user (
 	id int identity primary key,
@@ -46,6 +49,18 @@ create table user_role (
 	foreign key(username) references user(username)
 );
 
+------------------------------------------------------------------------------------------
+
+//Users and User roles
+
+insert into user values(default, 'Luka', 'Crnjakovic', 'lxc7826', 'crni', true);
+insert into user values(default, 'Emil Vid', 'Bacic', 'evb6235', 'vicko', true);
+
+insert into user_role values(default, 'lxc7826', 'ROLE_ADMIN');
+insert into user_role values(default, 'evb6235', 'ROLE_USER');
+
+------------------------------------------------------------------------------------------
+
 insert into tech_group values(default, 'Java', 'Radar about Java');
 insert into tech_group values(default, '.Net', 'Radar about .Net');
 insert into tech_group values(default, 'Frontend', 'Radar about Frontend');
@@ -57,6 +72,8 @@ insert into category values(default, 'Incoming');
 insert into category values(default, 'Should Pilot');
 insert into category values(default, 'Outgoing');
 insert into category values(default, 'Unused');
+
+------------------------------------------------------------------------------------------
 
 //Java
 
@@ -215,13 +232,5 @@ insert into technology values(default, 'Waterfall', 'Just a test description', 4
 insert into technology values(default, 'RTC 4', 'Just a test description', 4, 4);
 
 
-------------------------------------------------------------------------------------------
 
-//Users and User roles
-
-insert into user values(default, 'Luka', 'Crnjakovic', 'lxc7826', 'crni', true);
-insert into user values(default, 'Emil Vid', 'Bacic', 'evb6235', 'vicko', true);
-
-insert into user_role values(default, 'lxc7826', 'ROLE_ADMIN');
-insert into user_role values(default, 'evb6235', 'ROLE_USER');
 

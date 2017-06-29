@@ -10,10 +10,11 @@ import java.io.Serializable;
  * Created by luka.crnjakovic on 2.6.2017..
  */
 @Entity
+@SequenceGenerator(name = "tech_seq", sequenceName = "technology_serial", allocationSize = 1)
 public class Technology implements Serializable{
     private static final long serialVersionUID = 421139459241691794L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(generator = "tech_seq", strategy = GenerationType.SEQUENCE)
     private Long id;
     private String name;
     private String description;
