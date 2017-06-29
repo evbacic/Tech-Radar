@@ -18,7 +18,7 @@
     <div class="modal-content">
         <h4>Add Technology</h4>
         <!--/*@thymesVar id="technology" type="hr.kingict.model.Technology"*/-->
-        <form method="POST" th:object="${technology}" class="newTech" th:action="@{/update/{path}(path=${radarId})}">
+        <form id="myForm" method="POST" th:object="${technology}" class="newTech" th:action="@{/update/{path}(path=${radarId})}" >
             <table>
                 <tr>
                     <td>Name:</td>
