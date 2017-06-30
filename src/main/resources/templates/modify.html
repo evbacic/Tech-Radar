@@ -15,7 +15,7 @@
 <!--/*@thymesVar id="radarId" type="int"*/-->
 <body th:onload="'generatePage(\''+${radarId}+'\');'">
 <div id="modal1" class="modal">
-    <div class="modal-content">
+    <div id="addView" class="modal-content">
         <h4>Add Technology</h4>
         <!--/*@thymesVar id="technology" type="hr.kingict.model.Technology"*/-->
         <form id="myForm" method="POST" th:object="${technology}" class="newTech" th:action="@{/update/{path}(path=${radarId})}" >
@@ -45,7 +45,7 @@
                 </tr>
                 <tr>
                     <td colspan="2" >
-                        <input type="submit" value="Add" class="btn btn-primary" />
+                        <input id="addbtn" type="submit" value="Add" class="btn btn-primary" />
                     </td>
                 </tr>
             </table>
@@ -54,16 +54,25 @@
 </div>
 <div id="regionLeft">
     <div class="row">
-        <div class="cell lefty" id="adopt">Adopt</div>
-        <div class="cell righty" id="incoming">Incoming</div>
+        <label class="containerLabel lefty" for="adopt"> <div class="circle" style="background-color: #016C0E"></div>In Focus </label>
+        <label class="containerLabel  righty" for="incoming"><div class="circle" style="background-color: #E5C904"></div>Incoming</label>
     </div>
     <div class="row">
-        <div class="cell lefty" id="assess">Assess</div>
-        <div class="cell righty" id="hold">Hold</div>
+        <div class="cell lefty list-type4" id="adopt"></div>
+        <div class="cell righty list-type4" id="incoming"></div>
+    </div>
+    <div class="row">
+        <label class="containerLabel lefty" for="assess"><div class="circle" style="background-color: #F3E8E8"></div>Should Pilot</label>
+        <label class="containerLabel righty" for="hold"><div class="circle" style="background-color: #924343"></div>Outgoing</label>
+    </div>
+    <div class="row">
+        <div class="cell lefty list-type4" id="assess"></div>
+        <div class="cell righty list-type4" id="hold"></div>
     </div>
 </div>
 <div id="regionRight">
-    <div class="cell" id="unused">Unused</div>
+    <label class="containerLabelExtra" for="unused"><div class="circle" style="background-color: black"></div>Outdated</label>
+    <div class="cell list-type4" id="unused"></div>
 </div>
 <div class="fixed-action-btn horizontal">
     <a class="btn-floating btn-large red darken-4">

@@ -3,33 +3,46 @@
     <title>Tech Radar</title>
     <meta charset="UTF-8"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css"/>
 </head>
 <body onload='document.f.username.focus();'>
-<h1>Login to TechRadar</h1>
-<div id="content">
-    <p th:text="${logoutMsg}" class="successText" ></p>
-    <p th:text="${errorMsg}" class="errorText" ></p>
-    <form name='f' th:action='@{/login}' method='POST'>
-        <table>
-            <tr>
-                <td>Username:</td>
-                <td>
-                    <input type='text' name='username' value='' />
-                </td>
-            </tr>
-            <tr>
-                <td>Password:</td>
-                <td>
-                    <input type='password' name='password'/>
-                </td>
-            </tr>
-            <tr>
-                <td colspan='2'>
-                    <input name="submit" type="submit" value="Submit" class="btn btn-primary" />
-                </td>
-            </tr>
-        </table>
-    </form>
+<div id="loginMain">
+    <h1>Login to TechRadar</h1>
+    <div id="content">
+        <p th:text="${logoutMsg}" class="successText" ></p>
+        <p th:text="${errorMsg}" class="errorText" ></p>
+
+        <form name='f' th:action='@{/login}' method='POST'>
+            <table>
+                <tr>
+                    <!--<td>Username:</td>-->
+                    <td>
+                        <div class="input-field col s6">
+                            <input id="username" autocomplete="off" name='username' type="text" class="validate"/>
+                            <label class="active" for="username">Username</label>
+                        </div>
+                        <!--<input type='text' name='username' value='' />-->
+                    </td>
+                </tr>
+                <tr>
+                    <!--<td>Password:</td>-->
+                    <td>
+                        <div class="input-field col s6">
+                            <input id="password" type='password' name='password' class="validate"/>
+                            <label class="active" for="password">Password</label>
+                        </div>
+                        <!--<input type='password' name='password'/>-->
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan='2'>
+                        <input id="loginbtn" name="submit" type="submit" value="Log In" class="btn btn-danger" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
 </div>
 </body>
 </html>
