@@ -1,0 +1,49 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.springframework.org/security/tags">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>TechRadar</title>
+    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/materialize.css}"/>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/font-mfizz.css}"/>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/homeStyle.css}"/>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/style.css"/>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+
+</head>
+<body>
+<button class="navigation-button">
+    <div class="burger-bar arrow-top-r"></div>
+    <div class="burger-bar arrow-middle-r"></div>
+    <div class="burger-bar arrow-bottom-r"></div>
+</button>
+<nav class="side-navigation-container hidden hideNav">
+    <ul class="side-navigation-list">
+        <li class="side-navigation-item"><a th:href="@{/home/1}"><i class="fa icon-java-bold menu-icon" style="padding-left: 12px"></i></a></li>
+        <li class="side-navigation-item"><a th:href="@{/home/2}"><i class="fa icon-csharp menu-icon"></i></a></li>
+        <li class="side-navigation-item"><a th:href="@{/home/3}"><i class="fa icon-angular menu-icon"></i></a></li>
+        <li class="side-navigation-item"><a th:href="@{/home/4}"><i class="fa icon-git menu-icon"></i></a></li>
+        <li class="side-navigation-item"><a th:href="@{/logout}"><i class="fa fa-sign-out menu-icon"></i></a></li>
+    </ul>
+</nav>
+<div class="hero-section">
+    <div class="hero-section-text">
+        <h1>TechRadar</h1>
+    </div>
+</div>
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+<script>
+    $(window).load(function() {
+        $(".navigation-button").on("click tap", function() {
+            $(".side-navigation-container").toggleClass("showNav hideNav").removeClass("hidden");
+            $(this).toggleClass("animated");
+        });
+    });
+</script>
+<script th:src="@{/js/customScript.js}"></script>
+<script th:src="@{/js/materialize.js}"></script>
+</body>
+</html>

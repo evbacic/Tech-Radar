@@ -1,3 +1,33 @@
+:root{
+    --background: #333745;
+    --font: #DAEDE2;
+    --navbar: #B8244C;
+    --button: #77C4D3;
+}
+
+body{
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--background);
+    color: var(--font);
+}
+
+#loginMain{
+    width: 50em;
+    height: 29.3em;
+    background-color: var(--navbar);
+    border-radius: 3px;
+    margin:0 auto;
+    margin-top: 5%;
+    padding: 1em;
+    font-size: larger;
+}
+
+#addView{
+    background-color: var(--navbar);
+    color: var(--font);
+    border-radius: 3px;
+    padding: 1em;
+}
 
 #view {
     position: relative;
@@ -104,12 +134,15 @@ ul {
 }
 
 .cell {
-    background-color: #636c72;
-    width: 49%;
-    height: 42vh;
-    border-radius: 5px;
-    margin-bottom: 15px;
+    background-color: var(--navbar);
+    font-size: larger;
+    width: 47%;
+    height: 38vh;
+    border-radius: 3px;
+    margin: 1vh;
     overflow-y: auto;
+    display: inline-block;
+
 }
 
 .lefty {
@@ -190,7 +223,7 @@ ul {
 
 #unused {
     width: 95%;
-    height: 87.75vh;
+    height: 80vh;
 }
 
 #dropDelete{
@@ -203,4 +236,120 @@ ul {
 #logoutbtn{
     margin: 1em;
     margin-left: 4em;
+}
+
+#loginbtn{
+    float: right;
+}
+
+#addbtn{
+    float: right;
+}
+
+.circle {
+    width: 1em;
+    height: 1em;
+    border: solid 0.5px black;
+    margin: 2%;
+    margin-bottom: 0;
+    display: inline-block;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+}
+
+.containerLabel{
+    font-size: 20px;
+    color: var(--font);
+    background-color: var(--navbar);
+    width: 47%;
+    border-radius: 3px;
+    margin: 10px;
+    margin-bottom: 0;
+}
+
+.containerLabelExtra{
+    font-size: 20px;
+    color: var(--font);
+    background-color: var(--navbar);
+    width: 95%;
+    border-radius: 3px;
+    margin: 1vh;
+    margin-bottom: 2vh;
+    display: inline-block;
+    padding: inherit;
+    height: 2em;
+}
+
+/*#crossC{*/
+    /*font-size: 20px;*/
+    /*margin: 2%;*/
+    /*width: 1em;*/
+    /*height: 1em;*/
+    /*border: solid 0.5px black;*/
+    /*display: inline-block;*/
+    /*-moz-border-radius: 50px;*/
+    /*-webkit-border-radius: 50px;*/
+    /*border-radius: 50px;*/
+/*}*/
+
+.list-type4 li{
+    position: relative;
+    display: block;
+    padding: .4em .4em .4em 2em;
+    *padding: .4em;
+    border-bottom: solid 1px;
+    background: #DAEDE2;
+    color: var(--background);
+    text-decoration: none;
+    box-shadow:inset 0.5em 0 var(--navbar);
+    -webkit-transition: box-shadow 0.5s; /* For Safari 3.1 to 6.0 */
+    transition: box-shadow 0.5s ease-in-out;
+    cursor: hand;
+}
+
+.list-type4 li:hover{
+    box-shadow:inset 2em 0 var(--navbar);
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+    border-radius: 0 3px 0 3px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+    background-color: #77C4D3;
+}
+
+.hero-section {
+    background:linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("../img/radar_1.jpg") no-repeat;
+    background-size: cover;
+    height: 100%;
+    text-align: center;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+
+}
+
+.hero-section h1{
+    font-size: 15vh;
+    color: var(--font);
+}
+
+.hero-section .hero-section-text {
+    color: #fefefe;
+    text-shadow: 1px 1px 2px #0a0a0a;
 }

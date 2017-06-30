@@ -10,19 +10,19 @@ function generatePage(radarId) {
                 if(resultData[i].techGroup.id.toString() === radarId){
                     switch(resultData[i].category.id){
                         case 1:
-                            $("#adopt").append("<li class='ui-state-default' id='" + resultData[i].id + "'>" + resultData[i].name + "</li>");
+                            $("#adopt").append("<li class='collection-item' id='" + resultData[i].id + "'>" + resultData[i].name + "</li>");
                             break;
                         case 2:
-                            $("#incoming").append("<li class='ui-state-default' id='" + resultData[i].id + "'>" + resultData[i].name + "</li>");
+                            $("#incoming").append("<li class='collection-item' id='" + resultData[i].id + "'>" + resultData[i].name + "</li>");
                             break;
                         case 3:
-                            $("#assess").append("<li class='ui-state-default' id='" + resultData[i].id + "'>" + resultData[i].name + "</li>");
+                            $("#assess").append("<li class='collection-item' id='" + resultData[i].id + "'>" + resultData[i].name + "</li>");
                             break;
                         case 4:
-                            $("#hold").append("<li class='ui-state-default' id='" + resultData[i].id + "'>" + resultData[i].name + "</li>");
+                            $("#hold").append("<li class='collection-item' id='" + resultData[i].id + "'>" + resultData[i].name + "</li>");
                             break;
                         case 5:
-                            $("#unused").append("<li class='ui-state-default' id='" + resultData[i].id + "'>" + resultData[i].name + "</li>");
+                            $("#unused").append("<li class='collection-item' id='" + resultData[i].id + "'>" + resultData[i].name + "</li>");
                             break;
                     }
                 }

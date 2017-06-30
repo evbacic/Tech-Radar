@@ -49,8 +49,8 @@ public class Test {
 
     @GetMapping("/home")
     public String home(Model model){
-        model.addAttribute("radarId", 0);
-        return "index_redesigned";
+//        model.addAttribute("radarId", 0);
+        return "hero";
     }
 
     @GetMapping("/home/{radarId}")
