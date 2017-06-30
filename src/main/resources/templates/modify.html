@@ -27,12 +27,6 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>Description:</td>
-                    <td>
-                        <input type="text" th:field="*{description}" required="required"/>
-                    </td>
-                </tr>
-                <tr>
                     <td>Category:</td>
                     <td>
                         <select th:field="*{category}">
@@ -41,6 +35,12 @@
                                     th:value="${cat.id}"
                                     th:text="${cat.name}"></option>
                         </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Description:</td>
+                    <td>
+                        <input type="text" th:field="*{description}" required="required"/>
                     </td>
                 </tr>
                 <tr>
