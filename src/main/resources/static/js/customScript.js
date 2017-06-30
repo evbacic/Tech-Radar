@@ -3,10 +3,6 @@
  */
 $(function () {
    $("#updateButton").hide();
-    $(".navigation-button").on("click tap", function() {
-        $(".side-navigation-container").toggleClass("showNav hideNav").removeClass("hidden");
-        $(this).toggleClass("animated");
-    });
 });
 
 function loopOn(){
