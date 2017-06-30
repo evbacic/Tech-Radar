@@ -72,6 +72,10 @@ body{
 
 }
 
+.modal{
+    background-color: rgba(0,0,0,0);
+}
+
 #colors p{
     font-size: 1.2em;
     margin: 0;

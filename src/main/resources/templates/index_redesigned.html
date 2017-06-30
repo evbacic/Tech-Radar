@@ -46,6 +46,10 @@
 <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
 <script>
     $(window).load(function() {
+        $(".navigation-button").on("click tap", function() {
+            $(".side-navigation-container").toggleClass("showNav hideNav").removeClass("hidden");
+            $(this).toggleClass("animated");
+        });
         $("#collapsibleList").collapsible({
             onOpen: function(){
                 loopOn();
