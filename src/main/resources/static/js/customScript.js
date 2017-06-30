@@ -3,7 +3,28 @@
  */
 $(function () {
    $("#updateButton").hide();
+    $(".navigation-button").on("click tap", function() {
+        $(".side-navigation-container").toggleClass("showNav hideNav").removeClass("hidden");
+        $(this).toggleClass("animated");
+    });
 });
+
+function loopOn(){
+    var active = $("#collapsibleList").find(".active").attr("id");
+    var rects = document.getElementsByTagName("g");
+    for(var i = 0; i<rects.length; i++){
+        if($(rects[i]).attr("id") !== active){
+            $(rects[i]).attr("opacity", 0.5);
+        }
+    }
+}
+
+function loopOff(){
+    var rects = document.getElementsByTagName("g");
+    for(var i = 0; i<rects.length; i++){
+        $(rects[i]).attr("opacity", 1.0);
+    }
+}
 function generatePage(radarId){
     var group_id = parseInt(radarId);
     if(group_id !== 0){
@@ -112,17 +133,15 @@ function addItem (x, y, temp){
         .text(temp.id)
         .attr("overflow", "visible")
         .attr("font-size", 0.2);
-    var listContent = "<li><div class='collapsible-header'>" + temp.id + ": " + temp.name + "</div><div class='collapsible-body'><span>" + temp.description + "</span></div></li>";
+    var listContent = "<li id='"+ temp.id + "'><div class='collapsible-header'>" + temp.id + ": " + temp.name + "</div><div class='collapsible-body'><span>" + temp.description + "</span></div></li>";
     $("#collapsibleList").append(listContent);
 
 }
 function handleHover (rect, num){
-    rect.attr("opacity", 0.75);
-    $("#" + num).css("background-color", "green");
+    rect.attr("cursor", "pointer");
 }
 function handleHoverOut(rect, num){
-    rect.attr("opacity", 1.0);
-    $("#" + num).css("background-color", "white");
+    rect.attr("cursor", "auto");
 }
 
 function clearRadar(){
