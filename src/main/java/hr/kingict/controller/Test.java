@@ -50,13 +50,13 @@ public class Test {
     @GetMapping("/home")
     public String home(Model model){
         model.addAttribute("radarId", 0);
-        return "index";
+        return "index_redesigned";
     }
 
     @GetMapping("/home/{radarId}")
     public String home(@PathVariable int radarId, Model model){
         model.addAttribute("radarId", radarId);
-        return "index";
+        return "index_redesigned";
     }
 
     @RequestMapping(value="/api/category-updates",method=RequestMethod.POST)
@@ -78,6 +78,11 @@ public class Test {
     @RequestMapping(value = "/403", method = RequestMethod.GET)
     public String getErrorPage(){
         return "unauthorized";
+    }
+
+    @GetMapping("/home1")
+    public String getIndex(){
+        return "index_redesigned";
     }
 
 

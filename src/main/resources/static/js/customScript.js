@@ -31,8 +31,6 @@ function generatePage(radarId){
 
                     }
                 }
-
-                document.getElementById("radarTitle").innerHTML = ' <span id="toggle" style="font-size:30px;cursor:pointer" onclick="closeNav()">&#9776;</span> ' + groupResultData[1].techGroup.name + " Tech Radar";
                 for(var x = 0; x < groupResultData.length; x++){
                     var temp = groupResultData[x];
                     switch(temp.category.id){
@@ -90,17 +88,32 @@ function addItem (x, y, temp){
     var rect = g.append("rect")
         .attr("x", x)
         .attr("y", y)
+        .attr("rx", 0.05)
+        .attr("ry", 0.05)
         .attr("width", 0.47)
         .attr("height", 0.4)
         .attr("fill", "#000");
+    var txtPos = 0;
+    switch(temp.id.toString().length){
+        case 1:
+            txtPos = 0.175;
+            break;
+        case 2:
+            txtPos = 0.125;
+            break;
+        case 3:
+            txtPos = 0.065;
+            break;
+    }
     var text = g.append("text")
-        .attr("x", x + 0.1)
-        .attr("y", y + 0.25)
+        .attr("x", x + txtPos)
+        .attr("y", y + 0.265)
         .attr("fill", "#fff")
         .text(temp.id)
         .attr("overflow", "visible")
         .attr("font-size", 0.2);
-    $("#list").append("<li id='" + temp.id + "'>" + " " + temp.id + ": " + temp.name + "</li>");
+    var listContent = "<li><div class='collapsible-header'>" + temp.id + ": " + temp.name + "</div><div class='collapsible-body'><span>" + temp.description + "</span></div></li>";
+    $("#collapsibleList").append(listContent);
 
 }
 function handleHover (rect, num){
@@ -119,17 +132,3 @@ function clearRadar(){
     $("#list").empty();
 }
 
-function openNav() {
-    document.getElementById("mySidenav").style.width = "250px";
-    document.getElementById("page-content-wrapper").style.marginLeft = "250px";
-    document.getElementById("toggle").setAttribute("onclick", "closeNav()");
-    //document.getElementById("toggle").innerHTML = "&#10060;";
-    document.getElementById("toggle").innerHTML = "&#9776;";
-}
-
-function closeNav() {
-    document.getElementById("mySidenav").style.width = "0";
-    document.getElementById("page-content-wrapper").style.marginLeft= "0";
-    document.getElementById("toggle").setAttribute("onclick", "openNav()");
-    document.getElementById("toggle").innerHTML = "&#9776;";
-}
