@@ -3,6 +3,7 @@
  */
 $(function () {
    $("#updateButton").hide();
+
 });
 
 function loopOn(){

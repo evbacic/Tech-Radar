@@ -72,6 +72,10 @@ body{
 
 }
 
+.modal{
+    background-color: rgba(0,0,0,0);
+}
+
 #colors p{
     font-size: 1.2em;
     margin: 0;
@@ -352,4 +356,12 @@ ul {
 .hero-section .hero-section-text {
     color: #fefefe;
     text-shadow: 1px 1px 2px #0a0a0a;
+}
+
+.darken-4{
+    background-color: var(--navbar);
+}
+
+.btn-floating:hover{
+    background-color: var(--navbar);
 }

@@ -23,7 +23,7 @@
                 <tr>
                     <td>Name:</td>
                     <td>
-                        <input type="text" th:field="*{name}" required="required"/>
+                        <input autocomplete="off" type="text" th:field="*{name}" required="required"/>
                     </td>
                 </tr>
                 <tr>
@@ -40,7 +40,7 @@
                 <tr>
                     <td>Description:</td>
                     <td>
-                        <input type="text" th:field="*{description}" required="required"/>
+                        <input type="text" autocomplete="off" th:field="*{description}" required="required"/>
                     </td>
                 </tr>
                 <tr>
@@ -75,7 +75,7 @@
     <div class="cell list-type4" id="unused"></div>
 </div>
 <div class="fixed-action-btn horizontal">
-    <a class="btn-floating btn-large red darken-4">
+    <a class="btn-floating btn-large darken-4">
         <i class="large material-icons">menu</i>
     </a>
     <ul>
