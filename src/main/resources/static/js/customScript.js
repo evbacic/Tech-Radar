@@ -102,6 +102,8 @@ function addItem (x, y, temp){
         .on("mouseout", function(){
             handleHoverOut(g, temp.id);
         });
+    g.append("title")
+        .text(temp.name);
     var rect = g.append("rect")
         .attr("x", x)
         .attr("y", y)
