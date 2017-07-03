@@ -31,7 +31,7 @@ function generatePage(radarId) {
                 containment: "document",
                 connectWith: ".cell"
             });
-            $(".cell").find("li").append("<i class='material-icons righty deletes' style='cursor: pointer'>clear</i>");
+            $(".cell").find("li").append("<i title='Delete' class='material-icons righty deletes' style='cursor: pointer'>delete_forever</i>");
             $(".deletes").each(function () {
                 $(this).on("click", function () {
                     var nodeIdToDelete = $(this).parent().attr("id");
