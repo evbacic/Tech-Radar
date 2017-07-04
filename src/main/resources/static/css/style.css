@@ -3,6 +3,10 @@
     --font: #DAEDE2;
     --navbar: #B8244C;
     --button: #77C4D3;
+    --inFocus: #016C0E;
+    --incoming: #E5C904;
+    --shouldPilot: #F3E8E8;
+    --outgoing: #924343;
 }
 
 body{
@@ -301,18 +305,17 @@ ul {
     position: relative;
     display: block;
     padding: .4em .4em .4em 2em;
-    *padding: .4em;
     border-bottom: solid 1px;
     background: #DAEDE2;
     color: var(--background);
     text-decoration: none;
-    box-shadow:inset 0.5em 0 var(--navbar);
-    -webkit-transition: box-shadow 0.5s; /* For Safari 3.1 to 6.0 */
-    transition: box-shadow 0.5s ease-in-out;
+    /*box-shadow:inset 0.5em 0 var(--navbar);*/
+    /*-webkit-transition: box-shadow 0.5s; !* For Safari 3.1 to 6.0 *!*/
+    /*transition: box-shadow 0.5s ease-in-out;*/
     cursor: hand;
 }
 
-.list-type4 li:hover{
+.list-type4 .inFocus li:hover{
     box-shadow:inset 2em 0 var(--navbar);
 }
 
@@ -364,6 +367,56 @@ ul {
 
 .btn-floating:hover{
     background-color: var(--navbar);
+}
+
+.inFocus{
+    box-shadow:inset 0.5em 0 var(--inFocus);
+    -webkit-transition: box-shadow 0.5s;
+    transition:box-shadow 0.5s ease-in-out;
+}
+
+.incoming{
+    box-shadow:inset 0.5em 0 var(--incoming);
+    -webkit-transition: box-shadow 0.5s;
+    transition:box-shadow 0.5s ease-in-out;
+}
+
+.shouldPilot{
+    box-shadow:inset 0.5em 0 var(--shouldPilot);
+    -webkit-transition: box-shadow 0.5s;
+    transition:box-shadow 0.5s ease-in-out;
+}
+
+.outgoing{
+    box-shadow:inset 0.5em 0 var(--outgoing);
+    -webkit-transition: box-shadow 0.5s;
+    transition:box-shadow 0.5s ease-in-out;
+}
+
+.outdated{
+    box-shadow:inset 0.5em 0 black;
+    -webkit-transition: box-shadow 0.5s;
+    transition:box-shadow 0.5s ease-in-out;
+}
+
+#adopt li:hover{
+    box-shadow:inset 2em 0 var(--inFocus);
+}
+
+#incoming li:hover{
+    box-shadow:inset 2em 0 var(--incoming);
+}
+
+#assess li:hover{
+    box-shadow:inset 2em 0 var(--shouldPilot);
+}
+
+#hold li:hover{
+    box-shadow:inset 2em 0 var(--outgoing);
+}
+
+#unused li:hover{
+    box-shadow:inset 2em 0 black;
 }
 
 .sweet-alert button.cancel{
