@@ -77,13 +77,13 @@
     <div class="cell list-type4" id="unused"></div>
 </div>
 <div class="fixed-action-btn horizontal">
-    <a class="btn-floating btn-large darken-4">
+    <a class="btn-floating btn-large darken-4" title="Menu">
         <i class="large material-icons">menu</i>
     </a>
     <ul>
-        <li><a class="btn-floating pulse" th:onclick="'sendData(\''+${radarId}+'\');'"><i class="material-icons">done_all</i></a></li>
-        <li><a class="btn-floating pulse modal-trigger" href="#modal1"><i class="material-icons">add</i></a></li>
-        <li><a class="btn-floating pulse" th:onclick="'clearData();'"><i class="material-icons">clear</i></a></li>
+        <li><a class="btn-floating pulse" title="Save and Exit" th:onclick="'sendData(\''+${radarId}+'\');'"><i class="material-icons">done_all</i></a></li>
+        <li><a class="btn-floating pulse modal-trigger" title="Add New" href="#modal1"><i class="material-icons">add</i></a></li>
+        <li><a class="btn-floating pulse" title="Clear All" th:onclick="'clearData();'"><i class="material-icons">clear</i></a></li>
     </ul>
 </div>
 </body>
