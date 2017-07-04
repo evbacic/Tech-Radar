@@ -40,7 +40,7 @@ function generatePage(radarId) {
                             text: "You will not be able to recover this technology!",
                             type: "warning",
                             showCancelButton: true,
-                            confirmButtonColor: "#EA2E49",
+                            confirmButtonColor: "#B8244C",
                             confirmButtonText: "Yes, delete it!",
                             closeOnConfirm: false
                         },
