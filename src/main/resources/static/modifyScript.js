@@ -35,15 +35,28 @@ function generatePage(radarId) {
             $(".deletes").each(function () {
                 $(this).on("click", function () {
                     var nodeIdToDelete = $(this).parent().attr("id");
-                    $.ajax({
-                        type: "POST",
-                        contentType : 'application/json; charset=utf-8',
-                        url: "/api/delete",
-                        data: JSON.stringify({techId: nodeIdToDelete}), // Note it is important
-                        success :function() {
-                            $(".cell").find("#"+nodeIdToDelete).remove();
+                    swal({
+                            title: "Are you sure?",
+                            text: "You will not be able to recover this technology!",
+                            type: "warning",
+                            showCancelButton: true,
+                            confirmButtonColor: "#DD6B55",
+                            confirmButtonText: "Yes, delete it!",
+                            closeOnConfirm: false
+                        },
+                        function(){
+                            $.ajax({
+                                type: "POST",
+                                contentType : 'application/json; charset=utf-8',
+                                url: "/api/delete",
+                                data: JSON.stringify({techId: nodeIdToDelete}), // Note it is important
+                                success :function() {
+                                    $(".cell").find("#"+nodeIdToDelete).remove();
+                                    swal("Deleted!", "Your technology has been deleted.", "success");
+                                }
+                            });
                         }
-                    });
+                    );
                 })
             });
         },
@@ -79,8 +92,15 @@ function sendData(radarId){
         url: "/api/category-updates",
         data: JSON.stringify(data), // Note it is important
         success :function() {
-            alert("Update successful!");
-            window.location.href = "/home/" + radarId;
+            swal({
+                title: "Good job!",
+                text: "You successfully updated this radar!",
+                type: "success",
+                confirmButtonColor: "#77C4D3"
+            },
+            function(){
+                window.location.href = "/home/" + radarId;
+            });
         }
     });
 }
