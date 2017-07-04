@@ -1,3 +1,14 @@
+:root{
+    --background: #333745;
+    --font: #DAEDE2;
+    --navbar: #B8244C;
+    --button: #77C4D3;
+    --inFocus: #016C0E;
+    --incoming: #E5C904;
+    --shouldPilot: #F3E8E8;
+    --outgoing: #924343;
+}
+
 body {
     background-color: #333745;
     font-family: 'Roboto', sans-serif;
@@ -291,4 +302,34 @@ hideNav { from {
 
 .collapsible-body {
     background-color: #B8244C;
+}
+
+.inFocus{
+    box-shadow:inset 0.5em 0 var(--inFocus);
+    -webkit-transition: box-shadow 0.5s;
+    transition:box-shadow 0.5s ease-in-out;
+}
+
+.incoming{
+    box-shadow:inset 0.5em 0 var(--incoming);
+    -webkit-transition: box-shadow 0.5s;
+    transition:box-shadow 0.5s ease-in-out;
+}
+
+.shouldPilot{
+    box-shadow:inset 0.5em 0 var(--shouldPilot);
+    -webkit-transition: box-shadow 0.5s;
+    transition:box-shadow 0.5s ease-in-out;
+}
+
+.outgoing{
+    box-shadow:inset 0.5em 0 var(--outgoing);
+    -webkit-transition: box-shadow 0.5s;
+    transition:box-shadow 0.5s ease-in-out;
+}
+
+.outdated{
+    box-shadow:inset 0.5em 0 black;
+    -webkit-transition: box-shadow 0.5s;
+    transition:box-shadow 0.5s ease-in-out;
 }

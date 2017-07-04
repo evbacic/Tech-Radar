@@ -132,7 +132,23 @@ function addItem (x, y, temp){
         .text(temp.id)
         .attr("overflow", "visible")
         .attr("font-size", 0.2);
-    var listContent = "<li id='"+ temp.id + "'><div class='collapsible-header'>" + temp.id + ": " + temp.name + "</div><div class='collapsible-body'><span>" + temp.description + "</span></div></li>";
+
+    switch(temp.category.id){
+        case 1:
+            var listContent = "<li id='"+ temp.id + "'><div class='collapsible-header inFocus'>" + temp.id + ": " + temp.name + "</div><div class='collapsible-body'><span>" + temp.description + "</span></div></li>";
+            break;
+        case 2:
+            var listContent = "<li id='"+ temp.id + "'><div class='collapsible-header incoming'>" + temp.id + ": " + temp.name + "</div><div class='collapsible-body'><span>" + temp.description + "</span></div></li>";
+            break;
+        case 3:
+            var listContent = "<li id='"+ temp.id + "'><div class='collapsible-header shouldPilot'>" + temp.id + ": " + temp.name + "</div><div class='collapsible-body'><span>" + temp.description + "</span></div></li>";
+            break;
+        case 4:
+            var listContent = "<li id='"+ temp.id + "'><div class='collapsible-header outgoing'>" + temp.id + ": " + temp.name + "</div><div class='collapsible-body'><span>" + temp.description + "</span></div></li>";
+            break;
+    }
+
+    // var listContent = "<li id='"+ temp.id + "'><div class='collapsible-header'>" + temp.id + ": " + temp.name + "</div><div class='collapsible-body'><span>" + temp.description + "</span></div></li>";
     $("#collapsibleList").append(listContent);
 
 }
