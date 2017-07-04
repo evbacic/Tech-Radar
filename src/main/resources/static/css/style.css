@@ -365,3 +365,13 @@ ul {
 .btn-floating:hover{
     background-color: var(--navbar);
 }
+
+.sweet-alert button.cancel{
+    background-color: #333745;
+}
+
+.sweet-alert button.cancel:hover{
+    background-color: #333745;
+    filter: brightness(95%);
+}
+
