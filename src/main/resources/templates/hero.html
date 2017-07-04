@@ -26,7 +26,8 @@
         <li class="side-navigation-item"><a th:href="@{/home/2}"><i class="fa icon-csharp menu-icon"></i></a></li>
         <li class="side-navigation-item"><a th:href="@{/home/3}"><i class="fa icon-angular menu-icon"></i></a></li>
         <li class="side-navigation-item"><a th:href="@{/home/4}"><i class="fa icon-git menu-icon"></i></a></li>
-        <li class="side-navigation-item"><a th:href="@{/logout}"><i class="fa fa-sign-out menu-icon"></i></a></li>
+        <li class="side-navigation-item" sec:authorize="hasRole('ROLE_ANONYMOUS')"><a th:href="@{/login}"><i class="fa fa-sign-in menu-icon"></i></a></li>
+        <li class="side-navigation-item" sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/logout}"><i class="fa fa-sign-out menu-icon"></i></a></li>
     </ul>
 </nav>
 <div class="hero-section">
