@@ -1,3 +1,4 @@
+
 drop table if exists technology;
 drop table if exists category;
 drop table if exists tech_group;
