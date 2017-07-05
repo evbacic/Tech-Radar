@@ -224,9 +224,12 @@ insert into technology values(default, 'RTC 4', 'Just a test description', 4);
 
 insert into radar values(default, 1, '2017-01-01', '2017-06-30');
 insert into radar values(default, 1, '2016-07-01', '2016-12-31');
-insert into radar values(default, 2, '2016-12-31', '2017-07-01');
-insert into radar values(default, 3, '2016-12-31', '2017-07-01');
-insert into radar values(default, 4, '2016-12-31', '2017-07-01');
+insert into radar values(default, 2, '2017-01-01', '2017-06-30');
+insert into radar values(default, 2, '2016-07-01', '2016-12-31');
+insert into radar values(default, 3, '2017-01-01', '2017-06-30');
+insert into radar values(default, 3, '2016-07-01', '2016-12-31');
+insert into radar values(default, 4, '2017-01-01', '2017-06-30');
+insert into radar values(default, 4, '2016-07-01', '2016-12-31');
 
 insert into radar_technologies values(default, 1, 1, 1);
 insert into radar_technologies values(default, 1, 2, 2);
@@ -252,5 +255,19 @@ insert into radar_technologies values(default, 2, 3, 3);
 insert into radar_technologies values(default, 2, 4, 4);
 insert into radar_technologies values(default, 2, 5, 1);
 insert into radar_technologies values(default, 2, 6, 2);
+
+insert into radar_technologies values(default, 3, 31, 1);
+insert into radar_technologies values(default, 3, 32, 2);
+insert into radar_technologies values(default, 3, 33, 3);
+insert into radar_technologies values(default, 3, 34, 4);
+insert into radar_technologies values(default, 3, 35, 1);
+insert into radar_technologies values(default, 3, 36, 2);
+
+insert into radar_technologies values(default, 4, 37, 1);
+insert into radar_technologies values(default, 4, 38, 2);
+insert into radar_technologies values(default, 4, 39, 3);
+insert into radar_technologies values(default, 4, 31, 4);
+insert into radar_technologies values(default, 4, 32, 1);
+insert into radar_technologies values(default, 4, 33, 2);
 
 

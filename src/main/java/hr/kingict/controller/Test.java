@@ -59,20 +59,33 @@ public class Test {
     public String home(Model model){
         java.sql.Date d1=java.sql.Date.valueOf("2016-12-31");
         java.sql.Date d2=java.sql.Date.valueOf("2017-07-01");
-        System.out.println(radarRepository.findByDates(d1, d2).get(0).getTechGroupRadar().getName());
+        System.out.println(radarRepository.findByDates(d1).get(0).getTechGroupRadar().getName());
         return "hero";
     }
 
-    @GetMapping("/home/{radarId}")
-    public String home(@PathVariable int radarId, Model model){
+    @GetMapping("/home/{techGroup}")
+    public String home(@PathVariable int techGroup, Model model){
+        int radarId = 0;
+        List<Radar> list = radarRepository.findRecentByGroup();
+        for(Radar r: list){
+            if(r.getTechGroupRadar().getId()==techGroup){
+                radarId = (int)(long)(r.getId());
+            }
+        }
         model.addAttribute("radarId", radarId);
         return "index_redesigned";
     }
 
-    @PostMapping("/home/{radarId}")
-    public String changeHome(@PathVariable int radarId, Model model, @ModelAttribute RadarDates radarDates){
-        System.out.println(radarDates.getStart());
-        model.addAttribute("groupId", radarId);
+    @GetMapping("/home/{techGroup}/{start}")
+    public String home(@PathVariable int techGroup, @PathVariable String start, Model model){
+        int radarId = 0;
+        List<Radar> list = radarRepository.findByDates(Date.valueOf(start));
+        for(Radar r: list){
+            if(r.getTechGroupRadar().getId()==techGroup){
+                radarId = (int)(long)(r.getId());
+            }
+        }
+        model.addAttribute("radarId", radarId);
         return "index_redesigned";
     }
 

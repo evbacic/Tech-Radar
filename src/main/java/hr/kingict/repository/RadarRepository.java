@@ -15,6 +15,9 @@ import java.util.List;
 @Repository
 public interface RadarRepository extends JpaRepository<Radar, Long>{
 
-    @Query("SELECT r from Radar r where r.start = ?1 and r.end = ?2")
-    List<Radar> findByDates(Date start, Date end);
+    @Query("SELECT r from Radar r where r.start = ?1")
+    List<Radar> findByDates(Date start);
+
+    @Query("SELECT r from Radar r where r.start = (SELECT MAX(r.start) from r)")
+    List<Radar> findRecentByGroup();
 }
