@@ -3,6 +3,8 @@ drop table if exists category;
 drop table if exists tech_group;
 drop table if exists user;
 drop table if exists user_role;
+drop table if exists radar;
+drop table if exists radar_technologies;
 drop sequence if exists technology_id_seq;
 drop sequence if exists category_id_seq;
 drop sequence if exists tech_group_id_seq;
@@ -37,13 +39,13 @@ create table radar(
 );
 
 create table radar_technologies(
+    id int identity primary key,
 	radar_id int not null,
 	tech_id int not null,
 	category_id int not null,
 	foreign key(radar_id) references radar(id),
 	foreign key(tech_id) references technology(id),
-	foreign key(category_id) references category(id),
-	primary key(radar_id, tech_id, category_id)
+	foreign key(category_id) references category(id)
 );
 
 create table user (
@@ -214,3 +216,40 @@ insert into technology values(default, 'Pair programming', 'Just a test descript
 insert into technology values(default, 'TDD', 'Just a test description', 4);
 insert into technology values(default, 'Waterfall', 'Just a test description', 4);
 insert into technology values(default, 'RTC 4', 'Just a test description', 4);
+
+------------------------------------------------------------------------------------------
+
+//Testing
+
+insert into radar values(default, 1, '2017-01-01', '2017-06-30');
+insert into radar values(default, 1, '2016-07-01', '2016-12-31');
+insert into radar values(default, 2, '2016-12-31', '2017-07-01');
+insert into radar values(default, 3, '2016-12-31', '2017-07-01');
+insert into radar values(default, 4, '2016-12-31', '2017-07-01');
+
+insert into radar_technologies values(default, 1, 1, 1);
+insert into radar_technologies values(default, 1, 2, 2);
+insert into radar_technologies values(default, 1, 3, 3);
+insert into radar_technologies values(default, 1, 4, 4);
+insert into radar_technologies values(default, 1, 5, 1);
+insert into radar_technologies values(default, 1, 6, 2);
+insert into radar_technologies values(default, 1, 7, 3);
+insert into radar_technologies values(default, 1, 8, 4);
+insert into radar_technologies values(default, 1, 9, 1);
+insert into radar_technologies values(default, 1, 10, 2);
+insert into radar_technologies values(default, 1, 11, 3);
+insert into radar_technologies values(default, 1, 12, 4);
+insert into radar_technologies values(default, 1, 13, 5);
+insert into radar_technologies values(default, 1, 14, 1);
+insert into radar_technologies values(default, 1, 15, 2);
+insert into radar_technologies values(default, 1, 16, 3);
+insert into radar_technologies values(default, 1, 17, 4);
+
+insert into radar_technologies values(default, 2, 1, 1);
+insert into radar_technologies values(default, 2, 2, 2);
+insert into radar_technologies values(default, 2, 3, 3);
+insert into radar_technologies values(default, 2, 4, 4);
+insert into radar_technologies values(default, 2, 5, 1);
+insert into radar_technologies values(default, 2, 6, 2);
+
+

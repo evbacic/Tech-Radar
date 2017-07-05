@@ -19,7 +19,7 @@ public class Category implements Serializable{
     private String name;
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
     @JsonIgnore
-    private List<Technology> technologyList;
+    private List<RadarTechnologies> radarTechnologiesList;
 
     public Category() {
     }
@@ -46,11 +46,11 @@ public class Category implements Serializable{
         this.name = name;
     }
 
-    public List<Technology> getTechnologyList() {
-        return technologyList;
+    public List<RadarTechnologies> getRadarTechnologiesList() {
+        return radarTechnologiesList;
     }
 
-    public void setTechnologyList(List<Technology> technologyList) {
-        this.technologyList = technologyList;
+    public void setRadarTechnologiesList(List<RadarTechnologies> radarTechnologiesList) {
+        this.radarTechnologiesList = radarTechnologiesList;
     }
 }

@@ -1,10 +1,12 @@
 package hr.kingict.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by luka.crnjakovic on 2.6.2017..
@@ -22,20 +24,18 @@ public class Technology implements Serializable{
     @JoinColumn(name = "tech_group_id")
     //@JsonBackReference
     private TechGroup techGroup;
-    @ManyToOne
-    @JoinColumn(name = "category_id")
-    //@JsonBackReference
-    private Category category;
+    @OneToMany(mappedBy = "technology", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<RadarTechnologies> radarTechnologiesList;
 
     public Technology() {
     }
 
-    public Technology(String name, String description, TechGroup techGroup, Category category) {
+    public Technology(String name, String description, TechGroup techGroup) {
         super();
         this.name = name;
         this.description = description;
         this.techGroup = techGroup;
-        this.category = category;
     }
 
     public Long getId() {
@@ -68,14 +68,6 @@ public class Technology implements Serializable{
 
     public void setTechGroup(TechGroup techGroup) {
         this.techGroup = techGroup;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
     }
 
     @Override

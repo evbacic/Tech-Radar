@@ -22,8 +22,13 @@ function loopOff(){
         $(rects[i]).attr("opacity", 1.0);
     }
 }
-function generatePage(radarId){
-    var group_id = parseInt(radarId);
+function generatePage(ids){
+    var groupId = ids[1];
+    var radarId = ids[4];
+    console.log(groupId);
+    console.log(radarId);
+    var group_id = parseInt(groupId);
+    var radar_id = parseInt(radarId);
     if(group_id !== 0){
         clearRadar();
         $("#updateButton").show().on("click", function(){
@@ -43,12 +48,13 @@ function generatePage(radarId){
 
                 for(var i = 0; i < resultData.length; i++){
                     var temp1 = resultData[i];
-                    if(temp1.techGroup.id === group_id){
+                    if(temp1.radar.id === radar_id){
                         groupResultData.push(temp1);
                     } else {
 
                     }
                 }
+
                 for(var x = 0; x < groupResultData.length; x++){
                     var temp = groupResultData[x];
                     switch(temp.category.id){
@@ -96,15 +102,15 @@ function populateCircle (r, c, items){
 }
 function addItem (x, y, temp){
     var g = svg.append("g")
-        .attr("id", temp.id)
+        .attr("id", temp.technology.id)
         .on("mouseover", function(){
-            handleHover(g, temp.id);
+            handleHover(g, temp.technology.id);
         })
         .on("mouseout", function(){
-            handleHoverOut(g, temp.id);
+            handleHoverOut(g, temp.technology.id);
         });
     g.append("title")
-        .text(temp.name);
+        .text(temp.technology.name);
     var rect = g.append("rect")
         .attr("x", x)
         .attr("y", y)
@@ -114,7 +120,7 @@ function addItem (x, y, temp){
         .attr("height", 0.4)
         .attr("fill", "#000");
     var txtPos = 0;
-    switch(temp.id.toString().length){
+    switch(temp.technology.id.toString().length){
         case 1:
             txtPos = 0.175;
             break;
@@ -129,22 +135,22 @@ function addItem (x, y, temp){
         .attr("x", x + txtPos)
         .attr("y", y + 0.265)
         .attr("fill", "#fff")
-        .text(temp.id)
+        .text(temp.technology.id)
         .attr("overflow", "visible")
         .attr("font-size", 0.2);
 
     switch(temp.category.id){
         case 1:
-            var listContent = "<li id='"+ temp.id + "'><div class='collapsible-header inFocus'>" + temp.id + ": " + temp.name + "</div><div class='collapsible-body'><span>" + temp.description + "</span></div></li>";
+            var listContent = "<li id='"+ temp.technology.id + "'><div class='collapsible-header inFocus'>" + temp.technology.id + ": " + temp.technology.name + "</div><div class='collapsible-body'><span>" + temp.technology.description + "</span></div></li>";
             break;
         case 2:
-            var listContent = "<li id='"+ temp.id + "'><div class='collapsible-header incoming'>" + temp.id + ": " + temp.name + "</div><div class='collapsible-body'><span>" + temp.description + "</span></div></li>";
+            var listContent = "<li id='"+ temp.technology.id + "'><div class='collapsible-header incoming'>" + temp.technology.id + ": " + temp.technology.name + "</div><div class='collapsible-body'><span>" + temp.technology.description + "</span></div></li>";
             break;
         case 3:
-            var listContent = "<li id='"+ temp.id + "'><div class='collapsible-header shouldPilot'>" + temp.id + ": " + temp.name + "</div><div class='collapsible-body'><span>" + temp.description + "</span></div></li>";
+            var listContent = "<li id='"+ temp.technology.id + "'><div class='collapsible-header shouldPilot'>" + temp.technology.id + ": " + temp.technology.name + "</div><div class='collapsible-body'><span>" + temp.technology.description + "</span></div></li>";
             break;
         case 4:
-            var listContent = "<li id='"+ temp.id + "'><div class='collapsible-header outgoing'>" + temp.id + ": " + temp.name + "</div><div class='collapsible-body'><span>" + temp.description + "</span></div></li>";
+            var listContent = "<li id='"+ temp.technology.id + "'><div class='collapsible-header outgoing'>" + temp.technology.id + ": " + temp.technology.name + "</div><div class='collapsible-body'><span>" + temp.technology.description + "</span></div></li>";
             break;
     }
 

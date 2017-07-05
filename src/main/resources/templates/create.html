@@ -41,7 +41,7 @@
                             <tr>
                                 <td>Technology Group:</td>
                                 <td>
-                                    <select th:field="*{techGroup}">
+                                    <select th:field="*{techGroupRadar}">
                                         <!--/*@thymesVar id="radars" type="hr.kingict.model.TechGroup"*/-->
                                         <option th:each="tech : ${radars}"
                                                 th:value="${tech.id}"

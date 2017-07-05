@@ -1,15 +1,17 @@
 package hr.kingict.controller;
 
 import hr.kingict.model.*;
-import hr.kingict.repository.CategoryRepository;
-import hr.kingict.repository.TechGroupRepository;
-import hr.kingict.repository.TechnologyRepository;
+import hr.kingict.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -27,6 +29,12 @@ public class Test {
     @Autowired
     CategoryRepository categoryRepository;
 
+    @Autowired
+    RadarTechnologiesRepository radarTechnologiesRepository;
+
+    @Autowired
+    RadarRepository radarRepository;
+
     @GetMapping("/update/{radarId}")
     public String update(@PathVariable int radarId, Model model){
         model.addAttribute("radarId", radarId);
@@ -42,20 +50,31 @@ public class Test {
         List<Category> catList = categoryRepository.findAll();
         model.addAttribute("cats", catList);
         TechGroup radarUsed = techGroupRepository.findOne(new Long(radarId));
-        Technology newTech = new Technology(technology.getName(), technology.getDescription(), radarUsed, technology.getCategory());
-        technologyRepository.saveAndFlush(newTech);
+        //Technology newTech = new Technology(technology.getName(), technology.getDescription(), radarUsed, technology.getCategory());
+        //technologyRepository.saveAndFlush(newTech);
         return "redirect:/update/{radarId}";
     }
 
     @GetMapping("/home")
     public String home(Model model){
-//        model.addAttribute("radarId", 0);
+        java.sql.Date d1=java.sql.Date.valueOf("2016-12-31");
+        java.sql.Date d2=java.sql.Date.valueOf("2017-07-01");
+        System.out.println(radarRepository.findByDates(d1, d2).get(0).getTechGroupRadar().getName());
         return "hero";
     }
 
-    @GetMapping("/home/{radarId}")
-    public String home(@PathVariable int radarId, Model model){
-        model.addAttribute("radarId", radarId);
+    @GetMapping("/home/{groupId}/{radarId}")
+    public String home(@PathVariable int groupId, @PathVariable int radarId, Model model){
+        List<Integer> ids = new ArrayList<>();
+        ids.add(groupId);
+        ids.add(radarId);
+        model.addAttribute("ids", ids);
+        return "index_redesigned";
+    }
+
+    @GetMapping("/home/{groupId}")
+    public String home(@PathVariable int groupId, Model model){
+        model.addAttribute("groupId", groupId);
         return "index_redesigned";
     }
 
@@ -64,7 +83,7 @@ public class Test {
 
         for(int i = 0; i<list.size(); i++){
             Technology t = technologyRepository.findOne(list.get(i).getId());
-            t.setCategory(categoryRepository.findOne(list.get(i).getCatId()));
+            //t.setCategory(categoryRepository.findOne(list.get(i).getCatId()));
             technologyRepository.saveAndFlush(t);
         }
     }
@@ -79,11 +98,5 @@ public class Test {
     public String getErrorPage(){
         return "unauthorized";
     }
-
-    @GetMapping("/home1")
-    public String getIndex(){
-        return "index_redesigned";
-    }
-
 
 }

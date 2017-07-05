@@ -18,18 +18,27 @@ public class TechGroup implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private String description;
     @OneToMany(mappedBy = "techGroup", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Technology> technologyList;
+    @OneToMany(mappedBy = "techGroupRadar", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<Radar> radarList;
 
     public TechGroup() {
     }
 
-    public TechGroup(String name, String description) {
+    public TechGroup(String name) {
         super();
         this.name = name;
-        this.description = description;
+    }
+
+    public List<Radar> getRadarList() {
+        return radarList;
+    }
+
+    public void setRadarList(List<Radar> radarList) {
+        this.radarList = radarList;
     }
 
     public Long getId() {
@@ -46,14 +55,6 @@ public class TechGroup implements Serializable{
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public List<Technology> getTechnologyList() {
