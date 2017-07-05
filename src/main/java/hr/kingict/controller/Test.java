@@ -63,18 +63,16 @@ public class Test {
         return "hero";
     }
 
-    @GetMapping("/home/{groupId}/{radarId}")
-    public String home(@PathVariable int groupId, @PathVariable int radarId, Model model){
-        List<Integer> ids = new ArrayList<>();
-        ids.add(groupId);
-        ids.add(radarId);
-        model.addAttribute("ids", ids);
+    @GetMapping("/home/{radarId}")
+    public String home(@PathVariable int radarId, Model model){
+        model.addAttribute("radarId", radarId);
         return "index_redesigned";
     }
 
-    @GetMapping("/home/{groupId}")
-    public String home(@PathVariable int groupId, Model model){
-        model.addAttribute("groupId", groupId);
+    @PostMapping("/home/{radarId}")
+    public String changeHome(@PathVariable int radarId, Model model, @ModelAttribute RadarDates radarDates){
+        System.out.println(radarDates.getStart());
+        model.addAttribute("groupId", radarId);
         return "index_redesigned";
     }
 

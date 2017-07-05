@@ -22,17 +22,13 @@ function loopOff(){
         $(rects[i]).attr("opacity", 1.0);
     }
 }
-function generatePage(ids){
-    var groupId = ids[1];
-    var radarId = ids[4];
-    console.log(groupId);
+function generatePage(radarId){
     console.log(radarId);
-    var group_id = parseInt(groupId);
     var radar_id = parseInt(radarId);
-    if(group_id !== 0){
+    if(radar_id !== 0){
         clearRadar();
         $("#updateButton").show().on("click", function(){
-            window.location.href = "/update/"+group_id;
+            window.location.href = "/update/"+radar_id;
         });
         var cat1 = [];
         var cat2 = [];

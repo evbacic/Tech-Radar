@@ -29,6 +29,11 @@ public class Radar {
     public Radar() {
     }
 
+    public Radar(Date start, Date end) {
+        this.start = start;
+        this.end = end;
+    }
+
     public Radar(TechGroup techGroupRadar, Date start, Date end) {
         this.techGroupRadar = techGroupRadar;
         this.start = start;
