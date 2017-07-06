@@ -301,7 +301,7 @@ hideNav { from {
 }
 
 .collapsible-body {
-    background-color: #B8244C;
+    background-color: var(--navbar);
 }
 
 .inFocus{
@@ -332,4 +332,17 @@ hideNav { from {
     box-shadow:inset 0.5em 0 black;
     -webkit-transition: box-shadow 0.5s;
     transition:box-shadow 0.5s ease-in-out;
+}
+
+#datePicker{
+    display: inline-block;
+    float: right;
+    width: 25%;
+    height: 68px;
+    font-size: larger;
+}
+
+#datePicker:hover {
+    cursor: pointer;
+
 }

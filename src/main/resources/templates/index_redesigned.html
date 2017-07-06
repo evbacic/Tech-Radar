@@ -12,6 +12,7 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"/>
 
     <script src="https://d3js.org/d3.v4.min.js"></script>
+
 </head>
 <body th:onload="'generatePage(\''+${radarId}+'\');'">
 <button class="navigation-button">
@@ -36,13 +37,13 @@
         <circle id="droppable3" cx="5" cy="5" r="3" fill="#E5C904"></circle>
         <circle id="droppable4" cx="5" cy="5" r="2" fill="#016C0E"></circle>
     </svg>
+
     <i class="large material-icons" sec:authorize="hasRole('ROLE_ADMIN')" id="updateButton">build</i>
-    <form>
-        <select>
-            <option th:each="date:${dates}" th:value="${date}" th:text="${date}">
-            </option>
-        </select>
-    </form>
+
+    <select id="datePicker">
+        <option th:each="date:${dates}" th:value="${date}" th:text="${date}">
+        </option>
+    </select>
 
 </div>
 <div id="listWrapper">
