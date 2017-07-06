@@ -20,4 +20,7 @@ public interface RadarRepository extends JpaRepository<Radar, Long>{
 
     @Query("SELECT r from Radar r where r.start = (SELECT MAX(r.start) from r)")
     List<Radar> findRecentByGroup();
+
+    @Query("SELECT distinct r.start from Radar r")
+    List<Date> findAllDates();
 }

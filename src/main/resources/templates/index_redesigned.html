@@ -37,16 +37,13 @@
         <circle id="droppable4" cx="5" cy="5" r="2" fill="#016C0E"></circle>
     </svg>
     <i class="large material-icons" sec:authorize="hasRole('ROLE_ADMIN')" id="updateButton">build</i>
-    <!--<form id="myForm" method="POST" th:object="${radardates}" class="newTech" th:action="@{/home/{path}(path=${radarId})}" >-->
-        <!--&lt;!&ndash;<select th:field="*{category}">&ndash;&gt;-->
-            <!--&lt;!&ndash;&lt;!&ndash;/*@thymesVar id="cats" type="hr.kingict.model.Category"*/&ndash;&gt;&ndash;&gt;-->
-            <!--&lt;!&ndash;<option th:each="cat : ${cats}"&ndash;&gt;-->
-                    <!--&lt;!&ndash;th:value="${cat.id}"&ndash;&gt;-->
-                    <!--&lt;!&ndash;th:text="${cat.name}"></option>&ndash;&gt;-->
-        <!--&lt;!&ndash;</select>&ndash;&gt;-->
-        <!--<input autocomplete="off" type="text" th:field="*{start}" required="required"/>-->
-        <!--<input autocomplete="off" type="text" th:field="*{end}" required="required"/>-->
-    <!--</form>-->
+    <form>
+        <select>
+            <option th:each="date:${dates}" th:value="${date}" th:text="${date}">
+            </option>
+        </select>
+    </form>
+
 </div>
 <div id="listWrapper">
     <ul id="collapsibleList" class="collapsible popout" data-collapsible="accordion">

@@ -57,9 +57,6 @@ public class Test {
 
     @GetMapping("/home")
     public String home(Model model){
-        java.sql.Date d1=java.sql.Date.valueOf("2016-12-31");
-        java.sql.Date d2=java.sql.Date.valueOf("2017-07-01");
-        System.out.println(radarRepository.findByDates(d1).get(0).getTechGroupRadar().getName());
         return "hero";
     }
 
@@ -73,6 +70,7 @@ public class Test {
             }
         }
         model.addAttribute("radarId", radarId);
+        model.addAttribute("dates", radarRepository.findAllDates());
         return "index_redesigned";
     }
 
@@ -86,6 +84,7 @@ public class Test {
             }
         }
         model.addAttribute("radarId", radarId);
+        model.addAttribute("dates", radarRepository.findAllDates());
         return "index_redesigned";
     }
 
