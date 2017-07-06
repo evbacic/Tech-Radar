@@ -27,5 +27,7 @@ public class TechnologyRest {
         return radarTechnologiesRepository.findAll();
     }
 
+    @GetMapping("/api/technology")
+    public List<Technology> findTech() {return technologyRepository.findAll();}
 
 }
