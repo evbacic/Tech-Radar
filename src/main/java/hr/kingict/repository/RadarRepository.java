@@ -1,6 +1,7 @@
 package hr.kingict.repository;
 
 import hr.kingict.model.Radar;
+import hr.kingict.model.TechGroup;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -23,4 +24,7 @@ public interface RadarRepository extends JpaRepository<Radar, Long>{
 
     @Query("SELECT distinct r.start from Radar r")
     List<Date> findAllDates();
+
+    @Query("SELECT r.techGroupRadar from Radar r where r.id = ?1")
+    List<TechGroup> findByGroup(Long id);
 }

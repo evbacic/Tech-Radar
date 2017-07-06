@@ -3,7 +3,6 @@
  */
 $(function () {
    $("#updateButton").hide();
-
 });
 
 function loopOn(){
@@ -15,7 +14,9 @@ function loopOn(){
         }
     }
 }
-
+function setSelect(start){
+    $("#datePicker").val(start);
+}
 function loopOff(){
     var rects = document.getElementsByTagName("g");
     for(var i = 0; i<rects.length; i++){
@@ -23,7 +24,7 @@ function loopOff(){
     }
 }
 function generatePage(radarId){
-    console.log(radarId);
+
     var radar_id = parseInt(radarId);
     if(radar_id !== 0){
         clearRadar();
@@ -81,6 +82,9 @@ function generatePage(radarId){
                 populateCircle(2.5, center, cat2);
                 populateCircle(3.5, center, cat3);
                 populateCircle(4.5, center, cat4);
+                $("#datePicker").on("change", function () {
+                    window.location.href="/home/"+temp.radar.techGroupRadar.id+"/"+$(this).val();
+                });
             },
             error : function(jqXHR, textStatus, errorThrown) {
             },
