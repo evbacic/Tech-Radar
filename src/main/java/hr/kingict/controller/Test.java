@@ -38,20 +38,15 @@ public class Test {
     @GetMapping("/update/{radarId}")
     public String update(@PathVariable int radarId, Model model){
         model.addAttribute("radarId", radarId);
-        List<Category> catList = categoryRepository.findAll();
         model.addAttribute("technology", new Technology());
-        model.addAttribute("cats", catList);
         return "modify";
     }
 
     @PostMapping("/update/{radarId}")
     public String submitForm(@PathVariable int radarId, @ModelAttribute Technology technology, Model model){
         model.addAttribute("radarId", radarId);
-        List<Category> catList = categoryRepository.findAll();
-        model.addAttribute("cats", catList);
-        TechGroup radarUsed = techGroupRepository.findOne(new Long(radarId));
-        //Technology newTech = new Technology(technology.getName(), technology.getDescription(), radarUsed, technology.getCategory());
-        //technologyRepository.saveAndFlush(newTech);
+        Technology newTech = new Technology(technology.getName(), technology.getDescription(), radarRepository.findByGroup((long)radarId).get(0));
+        technologyRepository.saveAndFlush(newTech);
         return "redirect:/update/{radarId}";
     }
 
@@ -63,13 +58,16 @@ public class Test {
     @GetMapping("/home/{techGroup}")
     public String home(@PathVariable int techGroup, Model model){
         int radarId = 0;
+        String start = "";
         List<Radar> list = radarRepository.findRecentByGroup();
         for(Radar r: list){
             if(r.getTechGroupRadar().getId()==techGroup){
                 radarId = (int)(long)(r.getId());
+                start = String.valueOf(r.getStart());
             }
         }
         model.addAttribute("radarId", radarId);
+        model.addAttribute("start", start);
         model.addAttribute("dates", radarRepository.findAllDates());
         return "index_redesigned";
     }
@@ -85,6 +83,8 @@ public class Test {
         }
         model.addAttribute("radarId", radarId);
         model.addAttribute("dates", radarRepository.findAllDates());
+        model.addAttribute("start", start);
+        System.out.println(radarId);
         return "index_redesigned";
     }
 

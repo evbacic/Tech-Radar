@@ -13,7 +13,7 @@
 
     <script src="https://d3js.org/d3.v4.min.js"></script>
 </head>
-<body th:onload="'generatePage(\''+${radarId}+'\');'">
+<body th:onload="'generatePage(\''+${radarId}+'\'); setSelect(\''+${start}+'\');'">
 <button class="navigation-button">
     <div class="burger-bar arrow-top-r"></div>
     <div class="burger-bar arrow-middle-r"></div>
@@ -37,12 +37,10 @@
         <circle id="droppable4" cx="5" cy="5" r="2" fill="#016C0E"></circle>
     </svg>
     <i class="large material-icons" sec:authorize="hasRole('ROLE_ADMIN')" id="updateButton">build</i>
-    <form>
-        <select>
+        <select id="datePicker" style="display: block">
             <option th:each="date:${dates}" th:value="${date}" th:text="${date}">
             </option>
         </select>
-    </form>
 
 </div>
 <div id="listWrapper">

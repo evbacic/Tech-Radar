@@ -270,4 +270,31 @@ insert into radar_technologies values(default, 4, 31, 4);
 insert into radar_technologies values(default, 4, 32, 1);
 insert into radar_technologies values(default, 4, 33, 2);
 
+insert into radar_technologies values(default, 5, 61, 1);
+insert into radar_technologies values(default, 5, 62, 2);
+insert into radar_technologies values(default, 5, 63, 3);
+insert into radar_technologies values(default, 5, 64, 4);
+insert into radar_technologies values(default, 5, 65, 1);
+insert into radar_technologies values(default, 5, 66, 2);
+
+insert into radar_technologies values(default, 6, 67, 1);
+insert into radar_technologies values(default, 6, 68, 2);
+insert into radar_technologies values(default, 6, 69, 3);
+insert into radar_technologies values(default, 6, 70, 4);
+insert into radar_technologies values(default, 6, 59, 1);
+insert into radar_technologies values(default, 6, 71, 2);
+
+insert into radar_technologies values(default, 7, 90, 1);
+insert into radar_technologies values(default, 7, 91, 2);
+insert into radar_technologies values(default, 7, 92, 3);
+insert into radar_technologies values(default, 7, 93, 4);
+insert into radar_technologies values(default, 7, 94, 1);
+insert into radar_technologies values(default, 7, 95, 2);
+
+insert into radar_technologies values(default, 8, 96, 1);
+insert into radar_technologies values(default, 8, 97, 2);
+insert into radar_technologies values(default, 8, 98, 3);
+insert into radar_technologies values(default, 8, 99, 4);
+insert into radar_technologies values(default, 8, 100, 1);
+insert into radar_technologies values(default, 8, 101, 2);
 

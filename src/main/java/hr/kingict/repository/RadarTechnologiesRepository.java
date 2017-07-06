@@ -13,4 +13,5 @@ import java.sql.Date;
  */
 @Repository
 public interface RadarTechnologiesRepository extends JpaRepository<RadarTechnologies, Long>{
+
 }

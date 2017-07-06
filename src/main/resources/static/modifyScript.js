@@ -7,22 +7,22 @@ function generatePage(radarId) {
         contentType: 'application/json; charset=utf-8',
         success: function(resultData) {
             for(i = 0; i<resultData.length; i++){
-                if(resultData[i].techGroup.id.toString() === radarId){
+                if(resultData[i].radar.id.toString() === radarId){
                     switch(resultData[i].category.id){
                         case 1:
-                            $("#adopt").append("<li class='collection-item inFocus' id='" + resultData[i].id + "'>" + resultData[i].name + "</li>");
+                            $("#adopt").append("<li class='collection-item inFocus' id='" + resultData[i].technology.id + "'>" + resultData[i].technology.name + "</li>");
                             break;
                         case 2:
-                            $("#incoming").append("<li class='collection-item incoming' id='" + resultData[i].id + "'>" + resultData[i].name + "</li>");
+                            $("#incoming").append("<li class='collection-item incoming' id='" + resultData[i].technology.id + "'>" + resultData[i].technology.name + "</li>");
                             break;
                         case 3:
-                            $("#assess").append("<li class='collection-item shouldPilot' id='" + resultData[i].id + "'>" + resultData[i].name + "</li>");
+                            $("#assess").append("<li class='collection-item shouldPilot' id='" + resultData[i].technology.id + "'>" + resultData[i].technology.name + "</li>");
                             break;
                         case 4:
-                            $("#hold").append("<li class='collection-item outgoing' id='" + resultData[i].id + "'>" + resultData[i].name + "</li>");
+                            $("#hold").append("<li class='collection-item outgoing' id='" + resultData[i].technology.id + "'>" + resultData[i].technology.name + "</li>");
                             break;
                         case 5:
-                            $("#unused").append("<li class='collection-item outdated' id='" + resultData[i].id + "'>" + resultData[i].name + "</li>");
+                            $("#unused").append("<li class='collection-item outdated' id='" + resultData[i].technology.id + "'>" + resultData[i].technology.name + "</li>");
                             break;
                     }
                 }

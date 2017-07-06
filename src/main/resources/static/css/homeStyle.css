@@ -333,3 +333,8 @@ hideNav { from {
     -webkit-transition: box-shadow 0.5s;
     transition:box-shadow 0.5s ease-in-out;
 }
+
+#datePicker {
+    float: right;
+    width: 15%;
+}
