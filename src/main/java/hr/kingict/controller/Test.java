@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.sql.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -92,9 +90,16 @@ public class Test {
     public @ResponseBody void  getSearchUserProfiles(@RequestBody List<CategoryUpdate> list, HttpServletRequest request) {
 
         for(int i = 0; i<list.size(); i++){
-            Technology t = technologyRepository.findOne(list.get(i).getId());
-            //t.setCategory(categoryRepository.findOne(list.get(i).getCatId()));
-            technologyRepository.saveAndFlush(t);
+                RadarTechnologies rt = radarTechnologiesRepository.findByParams(technologyRepository.findOne(list.get(i).getId()), radarRepository.findOne(list.get(i).getRadId()));
+                if(rt!=null){
+                    rt.setCategory(categoryRepository.findOne(list.get(i).getCatId()));
+                    radarTechnologiesRepository.saveAndFlush(rt);
+                }
+                else{
+                    RadarTechnologies rtNew = new RadarTechnologies(radarRepository.findOne(list.get(i).getRadId()), technologyRepository.findOne(list.get(i).getId()), categoryRepository.findOne(list.get(i).getCatId()));
+                    radarTechnologiesRepository.saveAndFlush(rtNew);
+            }
+
         }
     }
 
