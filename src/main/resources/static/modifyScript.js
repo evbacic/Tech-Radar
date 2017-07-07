@@ -122,6 +122,9 @@ function sendData(radarId){
            case "hold":
                data.push(new Object({id: $(this).attr("id"), catId: 4, radId: radarId}));
                break;
+           case "unused":
+               data.push(new Object({id: $(this).attr("id"), catId: 0, radId: radarId}));
+               break;
        }
     });
     $.ajax({

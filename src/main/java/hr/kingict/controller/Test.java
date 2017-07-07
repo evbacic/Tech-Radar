@@ -87,17 +87,24 @@ public class Test {
     }
 
     @RequestMapping(value="/api/category-updates",method=RequestMethod.POST)
-    public @ResponseBody void  getSearchUserProfiles(@RequestBody List<CategoryUpdate> list, HttpServletRequest request) {
+    public @ResponseBody void getSearchUserProfiles(@RequestBody List<CategoryUpdate> list, HttpServletRequest request) {
 
         for(int i = 0; i<list.size(); i++){
                 RadarTechnologies rt = radarTechnologiesRepository.findByParams(technologyRepository.findOne(list.get(i).getId()), radarRepository.findOne(list.get(i).getRadId()));
                 if(rt!=null){
-                    rt.setCategory(categoryRepository.findOne(list.get(i).getCatId()));
-                    radarTechnologiesRepository.saveAndFlush(rt);
+                    if(list.get(i).getCatId()==0){
+                        radarTechnologiesRepository.delete(rt);
+                    }
+                    else{
+                        rt.setCategory(categoryRepository.findOne(list.get(i).getCatId()));
+                        radarTechnologiesRepository.saveAndFlush(rt);
+                    }
                 }
                 else{
-                    RadarTechnologies rtNew = new RadarTechnologies(radarRepository.findOne(list.get(i).getRadId()), technologyRepository.findOne(list.get(i).getId()), categoryRepository.findOne(list.get(i).getCatId()));
-                    radarTechnologiesRepository.saveAndFlush(rtNew);
+                    if(list.get(i).getCatId()!=0){
+                        RadarTechnologies rtNew = new RadarTechnologies(radarRepository.findOne(list.get(i).getRadId()), technologyRepository.findOne(list.get(i).getId()), categoryRepository.findOne(list.get(i).getCatId()));
+                        radarTechnologiesRepository.saveAndFlush(rtNew);
+                    }
             }
 
         }
