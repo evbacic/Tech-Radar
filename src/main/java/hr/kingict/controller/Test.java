@@ -57,16 +57,19 @@ public class Test {
     public String home(@PathVariable int techGroup, Model model){
         int radarId = 0;
         String start = "";
-        List<Radar> list = radarRepository.findRecentByGroup();
-        for(Radar r: list){
+        List<Radar> list = radarRepository.findRecentByGroup(techGroupRepository.findOne((long)techGroup));
+        System.out.println(list.size());
+        Radar r = list.get(0);
             if(r.getTechGroupRadar().getId()==techGroup){
                 radarId = (int)(long)(r.getId());
+                System.out.println(radarId);
                 start = String.valueOf(r.getStart());
+                System.out.println(start);
             }
-        }
+
         model.addAttribute("radarId", radarId);
         model.addAttribute("start", start);
-        model.addAttribute("dates", radarRepository.findAllDates());
+        model.addAttribute("dates", radarRepository.findAllDates(techGroupRepository.findOne(((long)techGroup))));
         return "index_redesigned";
     }
 
@@ -80,7 +83,7 @@ public class Test {
             }
         }
         model.addAttribute("radarId", radarId);
-        model.addAttribute("dates", radarRepository.findAllDates());
+        model.addAttribute("dates", radarRepository.findAllDates(techGroupRepository.findOne((long)techGroup)));
         model.addAttribute("start", start);
         System.out.println(radarId);
         return "index_redesigned";
@@ -90,7 +93,11 @@ public class Test {
     public @ResponseBody void getSearchUserProfiles(@RequestBody List<CategoryUpdate> list, HttpServletRequest request) {
 
         for(int i = 0; i<list.size(); i++){
-                RadarTechnologies rt = radarTechnologiesRepository.findByParams(technologyRepository.findOne(list.get(i).getId()), radarRepository.findOne(list.get(i).getRadId()));
+                Radar r = radarRepository.findOne(list.get(i).getRadId());
+                if(r==null){
+                    r = radarRepository.findRecentById().get(0);
+                }
+                RadarTechnologies rt = radarTechnologiesRepository.findByParams(technologyRepository.findOne(list.get(i).getId()), r);
                 if(rt!=null){
                     if(list.get(i).getCatId()==0){
                         radarTechnologiesRepository.delete(rt);
@@ -102,12 +109,18 @@ public class Test {
                 }
                 else{
                     if(list.get(i).getCatId()!=0){
-                        RadarTechnologies rtNew = new RadarTechnologies(radarRepository.findOne(list.get(i).getRadId()), technologyRepository.findOne(list.get(i).getId()), categoryRepository.findOne(list.get(i).getCatId()));
+                        RadarTechnologies rtNew = new RadarTechnologies(r, technologyRepository.findOne(list.get(i).getId()), categoryRepository.findOne(list.get(i).getCatId()));
                         radarTechnologiesRepository.saveAndFlush(rtNew);
                     }
             }
 
         }
+    }
+
+    @RequestMapping(value = "/api/radar-new", method = RequestMethod.POST)
+    public @ResponseBody void getNewRadarInfo(@RequestBody NewRadar newRadar, HttpServletRequest request){
+        Radar r = new Radar(techGroupRepository.findOne(newRadar.getTechGroupId()), Date.valueOf(newRadar.getStartDate()), Date.valueOf(newRadar.getEndDate()));
+        radarRepository.saveAndFlush(r);
     }
 
     @RequestMapping(value="/api/delete",method=RequestMethod.POST)

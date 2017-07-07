@@ -105,7 +105,18 @@ function generatePage(radarId) {
         timeout: 120000
     });
 }
-
+function saveData(){
+    console.log(JSON.stringify({techGroupId: group, startDate: $("#startDate").val(), endDate: $("#endDate").val()}));
+    $.ajax({
+        type: "POST",
+        contentType : 'application/json; charset=utf-8',
+        url: "/api/radar-new",
+        data: JSON.stringify({techGroupId: group, startDate: $("#startDate").val(), endDate: $("#endDate").val()}), // Note it is important
+        success :function() {
+            sendData(0);
+        }
+    });
+}
 function sendData(radarId){
     var data = [];
     $(".cell").find("li").each(function(){

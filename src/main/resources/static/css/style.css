@@ -428,3 +428,14 @@ ul {
     filter: brightness(95%);
 }
 
+#modal2 {
+    background-color: var(--navbar);
+}
+
+#saveBtn {
+    float: right;
+    background-color: #26a69a;
+    width: 15%;
+    border-radius: 1px;
+}
+

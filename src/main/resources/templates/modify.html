@@ -43,6 +43,29 @@
         </form>
     </div>
 </div>
+<div id="modal2" class="modal">
+    <div id="addView2" class="modal-content">
+            <table>
+                <tr>
+                    <td>Start Date (yyyy-MM-dd):</td>
+                    <td>
+                        <input id="startDate" autocomplete="off" type="text" required="required"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>End Date (yyyy-MM-dd):</td>
+                    <td>
+                        <input id="endDate" type="text" autocomplete="off" required="required"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" >
+                        <input id="saveBtn" value="Save" class="btn btn-primary" th:onclick="'saveData();'"/>
+                    </td>
+                </tr>
+            </table>
+    </div>
+</div>
 <div id="regionLeft">
     <div class="row">
         <label class="containerLabel lefty" for="adopt"> <div class="circle" style="background-color: #016C0E"></div>In Focus </label>
@@ -71,6 +94,7 @@
     </a>
     <ul>
         <li><a class="btn-floating pulse" title="Save and Exit" th:onclick="'sendData(\''+${radarId}+'\');'"><i class="material-icons">done_all</i></a></li>
+        <li><a class="btn-floating pulse" title="Save New" href="#modal2"><i class="material-icons">save</i></a></li>
         <li><a class="btn-floating pulse modal-trigger" title="Add New" href="#modal1"><i class="material-icons">add</i></a></li>
         <li><a class="btn-floating pulse" title="Clear All" th:onclick="'clearData();'"><i class="material-icons">clear</i></a></li>
     </ul>
