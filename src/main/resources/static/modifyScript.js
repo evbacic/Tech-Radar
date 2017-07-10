@@ -32,7 +32,7 @@ function generatePage(radarId) {
                 success: function(techData) {
                     for(var i = 0; i<techData.length; i++){
                         if(!(document.getElementById(techData[i].id)) && techData[i].techGroup.id === group){
-                            $("#unused").append("<li class='collection-item outdated' id='" + techData[i].id + "'>" + techData[i].name + "<i title='Delete' class='material-icons righty deletes' style='cursor: pointer'>delete_forever</i></li>");
+                            $("#unused").append("<li class='collection-item outdated' id='" + techData[i].id + "'>" + techData[i].name + "<label class='lever righty' ><input id='check' type='checkbox' class='switches'></label><i title='Delete' class='material-icons righty deletes' style='cursor: pointer'>delete_forever</i></li>");
                         }
                     }
                     $(".deletes").each(function () {
@@ -134,7 +134,17 @@ function sendData(radarId){
                data.push(new Object({id: $(this).attr("id"), catId: 4, radId: radarId}));
                break;
            case "unused":
-               data.push(new Object({id: $(this).attr("id"), catId: 0, radId: radarId}));
+               var inputElements = document.getElementsByClassName('switches');/// Radi samo za zadnji
+               // for(var i=0; inputElements[i]; ++i) {
+               if ($(this).find('switches').checked) {
+                   if(inputElements[i].checked){
+                       data.push(new Object({id: $(this).attr("id"), catId: 5, radId: radarId}));
+                       console.log($(this).find("switches").checked);
+                   } else {
+                       data.push(new Object({id: $(this).attr("id"), catId: 0, radId: radarId}));
+                       console.log($(this).find("switches").checked);
+                   }
+               }
                break;
        }
     });
