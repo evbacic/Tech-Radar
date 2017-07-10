@@ -243,7 +243,7 @@
     insert into radar_technologies values(default, 1, 10, 2);
     insert into radar_technologies values(default, 1, 11, 3);
     insert into radar_technologies values(default, 1, 12, 4);
-    insert into radar_technologies values(default, 1, 13, 5);
+    insert into radar_technologies values(default, 1, 13, 2);
     insert into radar_technologies values(default, 1, 14, 1);
     insert into radar_technologies values(default, 1, 15, 2);
     insert into radar_technologies values(default, 1, 16, 3);

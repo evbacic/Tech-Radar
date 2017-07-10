@@ -3,6 +3,7 @@ package hr.kingict.controller;
 import hr.kingict.model.Technology;
 import hr.kingict.repository.RadarRepository;
 import hr.kingict.repository.TechnologyRepository;
+import hr.kingict.service.TechnologyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,10 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class UpdateController {
 
     @Autowired
-    RadarRepository radarRepository;
-
-    @Autowired
-    TechnologyRepository technologyRepository;
+    private TechnologyService technologyService;
 
     @GetMapping("/update/{radarId}")
     public String update(@PathVariable int radarId, Model model){
@@ -33,8 +31,7 @@ public class UpdateController {
     @PostMapping("/update/{radarId}")
     public String submitForm(@PathVariable int radarId, @ModelAttribute Technology technology, Model model){
         model.addAttribute("radarId", radarId);
-        Technology newTech = new Technology(technology.getName(), technology.getDescription(), radarRepository.findByGroup((long)radarId).get(0));
-        technologyRepository.saveAndFlush(newTech);
+        technologyService.addNewTechnology(technology, (long)radarId);
         return "redirect:/update/{radarId}";
     }
 }

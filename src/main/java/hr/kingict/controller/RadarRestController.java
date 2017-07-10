@@ -4,6 +4,8 @@ import hr.kingict.model.RadarTechnologies;
 import hr.kingict.model.Technology;
 import hr.kingict.repository.RadarTechnologiesRepository;
 import hr.kingict.repository.TechnologyRepository;
+import hr.kingict.service.RadarTechnologiesService;
+import hr.kingict.service.TechnologyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,17 +19,17 @@ import java.util.List;
 public class RadarRestController {
 
     @Autowired
-    TechnologyRepository technologyRepository;
+    private RadarTechnologiesService radarTechnologiesService;
 
     @Autowired
-    RadarTechnologiesRepository radarTechnologiesRepository;
+    private TechnologyService technologyService;
 
     @GetMapping("/api/radar")
     public List<RadarTechnologies> findAll() {
-        return radarTechnologiesRepository.findAll();
+        return radarTechnologiesService.getAllRadarTechnologies();
     }
 
     @GetMapping("/api/technology")
-    public List<Technology> findTech() {return technologyRepository.findAll();}
+    public List<Technology> findTech() {return technologyService.getAllTechnologies();}
 
 }
