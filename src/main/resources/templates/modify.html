@@ -13,6 +13,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
     <script type="text/javascript" th:src="@{/js/sweetalert.min.js}"></script>
     <script type="text/javascript" th:src="@{/modifyScript.js}"></script>
+    <!--<script type="text/javascript" th:src="@{/js/picker.date.js}"></script>-->
+
 </head>
 <!--/*@thymesVar radIdarId" type="int"*/-->
 <body th:onload="'generatePage(\''+${radarId}+'\');'">
@@ -49,13 +51,13 @@
                 <tr>
                     <td>Start Date (yyyy-MM-dd):</td>
                     <td>
-                        <input id="startDate" autocomplete="off" type="text" required="required"/>
+                        <input class="datepicker" id="startDate" autocomplete="off" required="required"/>
                     </td>
                 </tr>
                 <tr>
                     <td>End Date (yyyy-MM-dd):</td>
                     <td>
-                        <input id="endDate" type="text" autocomplete="off" required="required"/>
+                        <input id="endDate" class="datepicker" autocomplete="off" required="required"/>
                     </td>
                 </tr>
                 <tr>
@@ -100,4 +102,10 @@
     </ul>
 </div>
 </body>
+<script>
+    $('.datepicker').pickadate({
+        format: 'yyyy-mm-dd',
+        formatSubmit: 'yyyy-mm-dd'
+    })
+</script>
 </html>

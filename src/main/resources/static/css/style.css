@@ -430,6 +430,8 @@ ul {
 
 #modal2 {
     background-color: var(--navbar);
+    height: 100vh;
+    width: 50em;
 }
 
 #saveBtn {
