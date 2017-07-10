@@ -1,6 +1,5 @@
 package hr.kingict.config;
 
-import org.springframework.boot.autoconfigure.flyway.FlywayDataSource;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -20,10 +19,4 @@ public class PersistenceConfiguration {
         return DataSourceBuilder.create().build();
     }
 
-//    @Bean
-//    @ConfigurationProperties(prefix="datasource.flyway")
-//    @FlywayDataSource
-//    public DataSource flywayDataSource(){
-//        return DataSourceBuilder.create().build();
-//    }
 }
