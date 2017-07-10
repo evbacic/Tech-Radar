@@ -19,12 +19,16 @@ public interface RadarRepository extends JpaRepository<Radar, Long>{
     @Query("SELECT r from Radar r where r.start = ?1")
     List<Radar> findByDates(Date start);
 
-    @Query("SELECT r from Radar r where r.start = (SELECT MAX(r.start) from r)")
-    List<Radar> findRecentByGroup();
+    @Query("SELECT r from Radar r where r.techGroupRadar = ?1 order by r.start desc")
+    List<Radar> findRecentByGroup(TechGroup techGroup);
 
-    @Query("SELECT distinct r.start from Radar r")
-    List<Date> findAllDates();
+    @Query("SELECT distinct r.start from Radar r where r.techGroupRadar = ?1")
+    List<Date> findAllDates(TechGroup techGroup);
 
     @Query("SELECT r.techGroupRadar from Radar r where r.id = ?1")
     List<TechGroup> findByGroup(Long id);
+
+    @Query("SELECT r from Radar r where r.id = (SELECT MAX(r.id) from r)")
+    List<Radar> findRecentById();
+
 }

@@ -105,22 +105,36 @@ function generatePage(radarId) {
         timeout: 120000
     });
 }
-
+function saveData(){
+    console.log(JSON.stringify({techGroupId: group, startDate: $("#startDate").val(), endDate: $("#endDate").val()}));
+    $.ajax({
+        type: "POST",
+        contentType : 'application/json; charset=utf-8',
+        url: "/api/radar-new",
+        data: JSON.stringify({techGroupId: group, startDate: $("#startDate").val(), endDate: $("#endDate").val()}), // Note it is important
+        success :function() {
+            sendData(0);
+        }
+    });
+}
 function sendData(radarId){
     var data = [];
     $(".cell").find("li").each(function(){
        switch($(this).parent().attr("id")){
            case "adopt":
-               data.push(new Object({id: $(this).attr("id"), catId: 1}));
+               data.push(new Object({id: $(this).attr("id"), catId: 1, radId: radarId}));
                break;
            case "incoming":
-               data.push(new Object({id: $(this).attr("id"), catId: 2}));
+               data.push(new Object({id: $(this).attr("id"), catId: 2, radId: radarId}));
                break;
            case "assess":
-               data.push(new Object({id: $(this).attr("id"), catId: 3}));
+               data.push(new Object({id: $(this).attr("id"), catId: 3, radId: radarId}));
                break;
            case "hold":
-               data.push(new Object({id: $(this).attr("id"), catId: 4}));
+               data.push(new Object({id: $(this).attr("id"), catId: 4, radId: radarId}));
+               break;
+           case "unused":
+               data.push(new Object({id: $(this).attr("id"), catId: 0, radId: radarId}));
                break;
        }
     });
