@@ -58,13 +58,10 @@ public class Test {
         int radarId = 0;
         String start = "";
         List<Radar> list = radarRepository.findRecentByGroup(techGroupRepository.findOne((long)techGroup));
-        System.out.println(list.size());
         Radar r = list.get(0);
             if(r.getTechGroupRadar().getId()==techGroup){
                 radarId = (int)(long)(r.getId());
-                System.out.println(radarId);
                 start = String.valueOf(r.getStart());
-                System.out.println(start);
             }
 
         model.addAttribute("radarId", radarId);
