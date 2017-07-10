@@ -1,7 +1,8 @@
 package hr.kingict.controller;
 
-import hr.kingict.model.*;
-import hr.kingict.repository.*;
+import hr.kingict.model.CategoryUpdate;
+import hr.kingict.model.NewRadar;
+import hr.kingict.model.TechnologyToDelete;
 import hr.kingict.service.RadarService;
 import hr.kingict.service.RadarTechnologiesService;
 import hr.kingict.service.TechnologyService;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import java.sql.Date;
 import java.util.List;
 
 /**

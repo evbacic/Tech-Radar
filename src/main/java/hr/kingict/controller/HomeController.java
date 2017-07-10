@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.sql.Date;
-import java.util.List;
 
 /**
  * Created by luka.crnjakovic on 5.6.2017..

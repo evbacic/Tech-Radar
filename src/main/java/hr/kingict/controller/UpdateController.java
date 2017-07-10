@@ -1,8 +1,6 @@
 package hr.kingict.controller;
 
 import hr.kingict.model.Technology;
-import hr.kingict.repository.RadarRepository;
-import hr.kingict.repository.TechnologyRepository;
 import hr.kingict.service.TechnologyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

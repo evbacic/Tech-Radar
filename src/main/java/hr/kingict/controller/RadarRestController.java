@@ -2,12 +2,12 @@ package hr.kingict.controller;
 
 import hr.kingict.model.RadarTechnologies;
 import hr.kingict.model.Technology;
-import hr.kingict.repository.RadarTechnologiesRepository;
-import hr.kingict.repository.TechnologyRepository;
 import hr.kingict.service.RadarTechnologiesService;
 import hr.kingict.service.TechnologyService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
