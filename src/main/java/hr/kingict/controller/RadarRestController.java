@@ -14,7 +14,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping
-public class TechnologyRest {
+public class RadarRestController {
 
     @Autowired
     TechnologyRepository technologyRepository;
