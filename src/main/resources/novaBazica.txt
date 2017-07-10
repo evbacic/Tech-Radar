@@ -1,300 +1,300 @@
 
-drop table if exists technology;
-drop table if exists category;
-drop table if exists tech_group;
-drop table if exists user;
-drop table if exists user_role;
-drop table if exists radar;
-drop table if exists radar_technologies;
-drop sequence if exists technology_id_seq;
-drop sequence if exists category_id_seq;
-drop sequence if exists tech_group_id_seq;
-drop sequence if exists technology_serial;
+    drop table if exists technology;
+    drop table if exists category;
+    drop table if exists tech_group;
+    drop table if exists user;
+    drop table if exists user_role;
+    drop table if exists radar;
+    drop table if exists radar_technologies;
+    drop sequence if exists technology_id_seq;
+    drop sequence if exists category_id_seq;
+    drop sequence if exists tech_group_id_seq;
+    drop sequence if exists technology_serial;
 
-create table tech_group(
-   id int identity primary key,
-   name varchar(50) not null
-);
+    create table tech_group(
+       id int identity primary key,
+       name varchar(50) not null
+    );
 
-create table category(
-   id int identity primary key,
-   name varchar(50) not null
-);
+    create table category(
+       id int identity primary key,
+       name varchar(50) not null
+    );
 
-create table technology(
-   id int primary key not null,
-   name varchar(50) not null,
-   description varchar(5000) not null,
-   tech_group_id int  not null,
-   foreign key(tech_group_id) references tech_group(id)
-);
-create sequence technology_serial nocache;
-alter table technology alter column id int default nextval('technology_serial');
+    create table technology(
+       id int primary key not null,
+       name varchar(50) not null,
+       description varchar(5000) not null,
+       tech_group_id int  not null,
+       foreign key(tech_group_id) references tech_group(id)
+    );
+    create sequence technology_serial nocache;
+    alter table technology alter column id int default nextval('technology_serial');
 
-create table radar(
-	id int identity primary key,
-	tech_group_id int not null,
-	start_date date not null,
-	end_date date not null,
-	foreign key(tech_group_id) references tech_group(id)
-);
+    create table radar(
+        id int identity primary key,
+        tech_group_id int not null,
+        start_date date not null,
+        end_date date not null,
+        foreign key(tech_group_id) references tech_group(id)
+    );
 
-create table radar_technologies(
-    id int identity primary key,
-	radar_id int not null,
-	tech_id int not null,
-	category_id int not null,
-	foreign key(radar_id) references radar(id),
-	foreign key(tech_id) references technology(id),
-	foreign key(category_id) references category(id)
-);
+    create table radar_technologies(
+        id int identity primary key,
+        radar_id int not null,
+        tech_id int not null,
+        category_id int not null,
+        foreign key(radar_id) references radar(id),
+        foreign key(tech_id) references technology(id),
+        foreign key(category_id) references category(id)
+    );
 
-create table user (
-	id int identity primary key,
-	fname varchar(50) not null,
-	lname varchar(50) not null,
-	username varchar(45) not null,
-	password varchar(45) not null,
-	enabled TINYINT NOT NULL DEFAULT 1
-);
+    create table user (
+        id int identity primary key,
+        fname varchar(50) not null,
+        lname varchar(50) not null,
+        username varchar(45) not null,
+        password varchar(45) not null,
+        enabled TINYINT NOT NULL DEFAULT 1
+    );
 
-create table user_role (
-	id int identity primary key,
-	username varchar(45) not null,
-	role varchar(45) not null,
-	foreign key(username) references user(username)
-);
+    create table user_role (
+        id int identity primary key,
+        username varchar(45) not null,
+        role varchar(45) not null,
+        foreign key(username) references user(username)
+    );
 
-------------------------------------------------------------------------------------------
+    ------------------------------------------------------------------------------------------
 
-//Users and User roles
+    //Users and User roles
 
-insert into user values(default, 'Luka', 'Crnjakovic', 'lxc7826', 'crni', true);
-insert into user values(default, 'Emil Vid', 'Bacic', 'evb6235', 'vicko', true);
+    insert into user values(default, 'Luka', 'Crnjakovic', 'lxc7826', 'crni', true);
+    insert into user values(default, 'Emil Vid', 'Bacic', 'evb6235', 'vicko', true);
 
-insert into user_role values(default, 'lxc7826', 'ROLE_ADMIN');
-insert into user_role values(default, 'evb6235', 'ROLE_ADMIN');
+    insert into user_role values(default, 'lxc7826', 'ROLE_ADMIN');
+    insert into user_role values(default, 'evb6235', 'ROLE_ADMIN');
 
 
-------------------------------------------------------------------------------------------
+    ------------------------------------------------------------------------------------------
 
-//Technology Groups
+    //Technology Groups
 
-insert into tech_group values(default, 'Java');
-insert into tech_group values(default, '.Net');
-insert into tech_group values(default, 'Frontend');
-insert into tech_group values(default, 'Platforms and Methodologies');
+    insert into tech_group values(default, 'Java');
+    insert into tech_group values(default, '.Net');
+    insert into tech_group values(default, 'Frontend');
+    insert into tech_group values(default, 'Platforms and Methodologies');
 
-------------------------------------------------------------------------------------------
+    ------------------------------------------------------------------------------------------
 
-//Radar Categories
+    //Radar Categories
 
-insert into category values(default, 'In Focus');
-insert into category values(default, 'Incoming');
-insert into category values(default, 'Should Pilot');
-insert into category values(default, 'Outgoing');
-insert into category values(default, 'Unused');
+    insert into category values(default, 'In Focus');
+    insert into category values(default, 'Incoming');
+    insert into category values(default, 'Should Pilot');
+    insert into category values(default, 'Outgoing');
+    insert into category values(default, 'Unused');
 
-------------------------------------------------------------------------------------------
+    ------------------------------------------------------------------------------------------
 
-//Java
+    //Java
 
-insert into technology values(default, 'JBE', 'Just a test description', 1);
-insert into technology values(default, 'Tomcat', 'Just a test description', 1);
-insert into technology values(default, 'Maven', 'Just a test description', 1);
-insert into technology values(default, 'Grails', 'Just a test description', 1);
-insert into technology values(default, 'Java 8', 'Just a test description', 1);
-insert into technology values(default, 'Groovy', 'Just a test description', 1);
-insert into technology values(default, 'Hibernate', 'Just a test description', 1);
-insert into technology values(default, 'Liquibase', 'Just a test description', 1);
-insert into technology values(default, 'Spring Boot', 'Just a test description', 1);
-insert into technology values(default, 'Spring', 'Just a test description', 1);
-insert into technology values(default, 'Thymeleaf', 'Just a test description', 1);
-insert into technology values(default, 'WildFly', 'Just a test description', 1);
-insert into technology values(default, 'Gradle', 'Just a test description', 1);
-insert into technology values(default, 'JavaFX 8', 'Just a test description', 1);
-insert into technology values(default, 'NoSQL', 'Just a test description', 1);
-insert into technology values(default, 'Vert.x', 'Just a test description', 1);
-insert into technology values(default, 'RxJava', 'Just a test description', 1);
-insert into technology values(default, 'Spock', 'Just a test description', 1);
-insert into technology values(default, 'akka', 'Just a test description', 1);
-insert into technology values(default, 'MyBatis', 'Just a test description', 1);
-insert into technology values(default, 'Ant', 'Just a test description', 1);
-insert into technology values(default, 'Java < 8', 'Just a test description', 1);
-insert into technology values(default, 'EJB', 'Just a test description', 1);
-insert into technology values(default, 'Vaadin', 'Just a test description', 1);
-insert into technology values(default, 'GWT', 'Just a test description', 1);
-insert into technology values(default, 'Swing', 'Just a test description', 1);
-insert into technology values(default, 'JSF/JSP', 'Just a test description', 1);
+    insert into technology values(default, 'JBE', 'Just a test description', 1);
+    insert into technology values(default, 'Tomcat', 'Just a test description', 1);
+    insert into technology values(default, 'Maven', 'Just a test description', 1);
+    insert into technology values(default, 'Grails', 'Just a test description', 1);
+    insert into technology values(default, 'Java 8', 'Just a test description', 1);
+    insert into technology values(default, 'Groovy', 'Just a test description', 1);
+    insert into technology values(default, 'Hibernate', 'Just a test description', 1);
+    insert into technology values(default, 'Liquibase', 'Just a test description', 1);
+    insert into technology values(default, 'Spring Boot', 'Just a test description', 1);
+    insert into technology values(default, 'Spring', 'Just a test description', 1);
+    insert into technology values(default, 'Thymeleaf', 'Just a test description', 1);
+    insert into technology values(default, 'WildFly', 'Just a test description', 1);
+    insert into technology values(default, 'Gradle', 'Just a test description', 1);
+    insert into technology values(default, 'JavaFX 8', 'Just a test description', 1);
+    insert into technology values(default, 'NoSQL', 'Just a test description', 1);
+    insert into technology values(default, 'Vert.x', 'Just a test description', 1);
+    insert into technology values(default, 'RxJava', 'Just a test description', 1);
+    insert into technology values(default, 'Spock', 'Just a test description', 1);
+    insert into technology values(default, 'akka', 'Just a test description', 1);
+    insert into technology values(default, 'MyBatis', 'Just a test description', 1);
+    insert into technology values(default, 'Ant', 'Just a test description', 1);
+    insert into technology values(default, 'Java < 8', 'Just a test description', 1);
+    insert into technology values(default, 'EJB', 'Just a test description', 1);
+    insert into technology values(default, 'Vaadin', 'Just a test description', 1);
+    insert into technology values(default, 'GWT', 'Just a test description', 1);
+    insert into technology values(default, 'Swing', 'Just a test description', 1);
+    insert into technology values(default, 'JSF/JSP', 'Just a test description', 1);
 
-------------------------------------------------------------------------------------
+    ------------------------------------------------------------------------------------
 
-//.Net
+    //.Net
 
-insert into technology values(default, 'SSDT', 'Just a test description', 2);
-insert into technology values(default, 'StructureMap', 'Just a test description', 2);
-insert into technology values(default, 'Log4Net', 'Just a test description', 2);
-insert into technology values(default, 'ASP.NET Web API', 'Just a test description', 2);
-insert into technology values(default, 'AutoMapper', 'Just a test description', 2);
-insert into technology values(default, 'MS Unit', 'Just a test description', 2);
-insert into technology values(default, 'WWF', 'Just a test description', 2);
-insert into technology values(default, 'WPF', 'Just a test description', 2);
-insert into technology values(default, 'WCF', 'Just a test description', 2);
-insert into technology values(default, 'ADO.Net', 'Just a test description', 2);
-insert into technology values(default, 'ASP.NetMVC', 'Just a test description', 2);
-insert into technology values(default, '.Net 4.5+', 'Just a test description', 2);
-insert into technology values(default, 'EF 6.0+', 'Just a test description', 2);
-insert into technology values(default, 'Coded UI', 'Just a test description', 2);
-insert into technology values(default, 'Fakes', 'Just a test description', 2);
-insert into technology values(default, 'SpecFlow', 'Just a test description', 2);
-insert into technology values(default, 'Xamarin', 'Just a test description', 2);
-insert into technology values(default, 'ASP.NET Core', 'Just a test description', 2);
-insert into technology values(default, 'SignalR', 'Just a test description', 2);
-insert into technology values(default, 'EF 1.0', 'Just a test description', 2);
-insert into technology values(default, 'WinForms', 'Just a test description', 2);
-insert into technology values(default, 'WebForms', 'Just a test description', 2);
-insert into technology values(default, 'ASMX', 'Just a test description', 2);
-insert into technology values(default, '.Net 4.5-', 'Just a test description', 2);
-insert into technology values(default, 'EF 6.0-', 'Just a test description', 2);
-insert into technology values(default, 'Ninject', 'Just a test description', 2);
+    insert into technology values(default, 'SSDT', 'Just a test description', 2);
+    insert into technology values(default, 'StructureMap', 'Just a test description', 2);
+    insert into technology values(default, 'Log4Net', 'Just a test description', 2);
+    insert into technology values(default, 'ASP.NET Web API', 'Just a test description', 2);
+    insert into technology values(default, 'AutoMapper', 'Just a test description', 2);
+    insert into technology values(default, 'MS Unit', 'Just a test description', 2);
+    insert into technology values(default, 'WWF', 'Just a test description', 2);
+    insert into technology values(default, 'WPF', 'Just a test description', 2);
+    insert into technology values(default, 'WCF', 'Just a test description', 2);
+    insert into technology values(default, 'ADO.Net', 'Just a test description', 2);
+    insert into technology values(default, 'ASP.NetMVC', 'Just a test description', 2);
+    insert into technology values(default, '.Net 4.5+', 'Just a test description', 2);
+    insert into technology values(default, 'EF 6.0+', 'Just a test description', 2);
+    insert into technology values(default, 'Coded UI', 'Just a test description', 2);
+    insert into technology values(default, 'Fakes', 'Just a test description', 2);
+    insert into technology values(default, 'SpecFlow', 'Just a test description', 2);
+    insert into technology values(default, 'Xamarin', 'Just a test description', 2);
+    insert into technology values(default, 'ASP.NET Core', 'Just a test description', 2);
+    insert into technology values(default, 'SignalR', 'Just a test description', 2);
+    insert into technology values(default, 'EF 1.0', 'Just a test description', 2);
+    insert into technology values(default, 'WinForms', 'Just a test description', 2);
+    insert into technology values(default, 'WebForms', 'Just a test description', 2);
+    insert into technology values(default, 'ASMX', 'Just a test description', 2);
+    insert into technology values(default, '.Net 4.5-', 'Just a test description', 2);
+    insert into technology values(default, 'EF 6.0-', 'Just a test description', 2);
+    insert into technology values(default, 'Ninject', 'Just a test description', 2);
 
-----------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------
 
-//Frontend
+    //Frontend
 
-insert into technology values(default, 'Grunt', 'Just a test description', 3);
-insert into technology values(default, 'Bower', 'Just a test description', 3);
-insert into technology values(default, 'AngularJS 1', 'Just a test description', 3);
-insert into technology values(default, 'jQuery', 'Just a test description', 3);
-insert into technology values(default, 'Leaflet.js', 'Just a test description', 3);
-insert into technology values(default, 'Lodash', 'Just a test description', 3);
-insert into technology values(default, 'Bootstrap 3', 'Just a test description', 3);
-insert into technology values(default, 'Knockout', 'Just a test description', 3);
-insert into technology values(default, 'Karma', 'Just a test description', 3);
-insert into technology values(default, 'React.Js', 'Just a test description', 3);
-insert into technology values(default, 'AngularJS 2', 'Just a test description', 3);
-insert into technology values(default, 'Ember', 'Just a test description', 3);
-insert into technology values(default, 'Meteor', 'Just a test description', 3);
-insert into technology values(default, 'Kinetic', 'Just a test description', 3);
-insert into technology values(default, 'Jasmine', 'Just a test description', 3);
-insert into technology values(default, 'dc.js', 'Just a test description', 3);
-insert into technology values(default, 'D3.js', 'Just a test description', 3);
-insert into technology values(default, 'Node.js', 'Just a test description', 3);
-insert into technology values(default, 'SPA', 'Just a test description', 3);
-insert into technology values(default, 'Phonegap', 'Just a test description', 3);
-insert into technology values(default, 'Underscore', 'Just a test description', 3);
-insert into technology values(default, 'DevExpress', 'Just a test description', 3);
-insert into technology values(default, 'Kendo UI', 'Just a test description', 3);
-insert into technology values(default, 'Kendo DataWiz', 'Just a test description', 3);
-insert into technology values(default, 'Sencha Touch', 'Just a test description', 3);
+    insert into technology values(default, 'Grunt', 'Just a test description', 3);
+    insert into technology values(default, 'Bower', 'Just a test description', 3);
+    insert into technology values(default, 'AngularJS 1', 'Just a test description', 3);
+    insert into technology values(default, 'jQuery', 'Just a test description', 3);
+    insert into technology values(default, 'Leaflet.js', 'Just a test description', 3);
+    insert into technology values(default, 'Lodash', 'Just a test description', 3);
+    insert into technology values(default, 'Bootstrap 3', 'Just a test description', 3);
+    insert into technology values(default, 'Knockout', 'Just a test description', 3);
+    insert into technology values(default, 'Karma', 'Just a test description', 3);
+    insert into technology values(default, 'React.Js', 'Just a test description', 3);
+    insert into technology values(default, 'AngularJS 2', 'Just a test description', 3);
+    insert into technology values(default, 'Ember', 'Just a test description', 3);
+    insert into technology values(default, 'Meteor', 'Just a test description', 3);
+    insert into technology values(default, 'Kinetic', 'Just a test description', 3);
+    insert into technology values(default, 'Jasmine', 'Just a test description', 3);
+    insert into technology values(default, 'dc.js', 'Just a test description', 3);
+    insert into technology values(default, 'D3.js', 'Just a test description', 3);
+    insert into technology values(default, 'Node.js', 'Just a test description', 3);
+    insert into technology values(default, 'SPA', 'Just a test description', 3);
+    insert into technology values(default, 'Phonegap', 'Just a test description', 3);
+    insert into technology values(default, 'Underscore', 'Just a test description', 3);
+    insert into technology values(default, 'DevExpress', 'Just a test description', 3);
+    insert into technology values(default, 'Kendo UI', 'Just a test description', 3);
+    insert into technology values(default, 'Kendo DataWiz', 'Just a test description', 3);
+    insert into technology values(default, 'Sencha Touch', 'Just a test description', 3);
 
-------------------------------------------------------------------------------------------
+    ------------------------------------------------------------------------------------------
 
-//Platforms and Methodologies
+    //Platforms and Methodologies
 
-insert into technology values(default, 'Nexus', 'Just a test description', 4);
-insert into technology values(default, 'Git', 'Just a test description', 4);
-insert into technology values(default, 'TFS 2015', 'Just a test description', 4);
-insert into technology values(default, 'RTC 5', 'Just a test description', 4);
-insert into technology values(default, 'Visual Studio Team Services', 'Just a test description', 4);
-insert into technology values(default, 'Soap UI', 'Just a test description', 4);
-insert into technology values(default, 'SonarQube', 'Just a test description', 4);
-insert into technology values(default, 'Fiddler', 'Just a test description', 4);
-insert into technology values(default, 'CI', 'Just a test description', 4);
-insert into technology values(default, 'Code Review', 'Just a test description', 4);
-insert into technology values(default, 'Scrum', 'Just a test description', 4);
-insert into technology values(default, 'RTC 6', 'Just a test description', 4);
-insert into technology values(default, 'CD', 'Just a test description', 4);
-insert into technology values(default, 'MS Azure', 'Just a test description', 4);
-insert into technology values(default, 'Selenium', 'Just a test description', 4);
-insert into technology values(default, 'Heroku', 'Just a test description', 4);
-insert into technology values(default, 'go CD', 'Just a test description', 4);
-insert into technology values(default, 'Chef', 'Just a test description', 4);
-insert into technology values(default, 'Puppet', 'Just a test description', 4);
-insert into technology values(default, 'Eclipse Che', 'Just a test description', 4);
-insert into technology values(default, 'Deployit', 'Just a test description', 4);
-insert into technology values(default, 'Pair programming', 'Just a test description', 4);
-insert into technology values(default, 'TDD', 'Just a test description', 4);
-insert into technology values(default, 'Waterfall', 'Just a test description', 4);
-insert into technology values(default, 'RTC 4', 'Just a test description', 4);
+    insert into technology values(default, 'Nexus', 'Just a test description', 4);
+    insert into technology values(default, 'Git', 'Just a test description', 4);
+    insert into technology values(default, 'TFS 2015', 'Just a test description', 4);
+    insert into technology values(default, 'RTC 5', 'Just a test description', 4);
+    insert into technology values(default, 'Visual Studio Team Services', 'Just a test description', 4);
+    insert into technology values(default, 'Soap UI', 'Just a test description', 4);
+    insert into technology values(default, 'SonarQube', 'Just a test description', 4);
+    insert into technology values(default, 'Fiddler', 'Just a test description', 4);
+    insert into technology values(default, 'CI', 'Just a test description', 4);
+    insert into technology values(default, 'Code Review', 'Just a test description', 4);
+    insert into technology values(default, 'Scrum', 'Just a test description', 4);
+    insert into technology values(default, 'RTC 6', 'Just a test description', 4);
+    insert into technology values(default, 'CD', 'Just a test description', 4);
+    insert into technology values(default, 'MS Azure', 'Just a test description', 4);
+    insert into technology values(default, 'Selenium', 'Just a test description', 4);
+    insert into technology values(default, 'Heroku', 'Just a test description', 4);
+    insert into technology values(default, 'go CD', 'Just a test description', 4);
+    insert into technology values(default, 'Chef', 'Just a test description', 4);
+    insert into technology values(default, 'Puppet', 'Just a test description', 4);
+    insert into technology values(default, 'Eclipse Che', 'Just a test description', 4);
+    insert into technology values(default, 'Deployit', 'Just a test description', 4);
+    insert into technology values(default, 'Pair programming', 'Just a test description', 4);
+    insert into technology values(default, 'TDD', 'Just a test description', 4);
+    insert into technology values(default, 'Waterfall', 'Just a test description', 4);
+    insert into technology values(default, 'RTC 4', 'Just a test description', 4);
 
-------------------------------------------------------------------------------------------
+    ------------------------------------------------------------------------------------------
 
-//Testing
+    //Testing
 
-insert into radar values(default, 1, '2017-01-01', '2017-06-30');
-insert into radar values(default, 1, '2016-07-01', '2016-12-31');
-insert into radar values(default, 2, '2017-01-01', '2017-06-30');
-insert into radar values(default, 2, '2016-07-01', '2016-12-31');
-insert into radar values(default, 3, '2017-01-01', '2017-06-30');
-insert into radar values(default, 3, '2016-07-01', '2016-12-31');
-insert into radar values(default, 4, '2017-01-01', '2017-06-30');
-insert into radar values(default, 4, '2016-07-01', '2016-12-31');
+    insert into radar values(default, 1, '2017-01-01', '2017-06-30');
+    insert into radar values(default, 1, '2016-07-01', '2016-12-31');
+    insert into radar values(default, 2, '2017-01-01', '2017-06-30');
+    insert into radar values(default, 2, '2016-07-01', '2016-12-31');
+    insert into radar values(default, 3, '2017-01-01', '2017-06-30');
+    insert into radar values(default, 3, '2016-07-01', '2016-12-31');
+    insert into radar values(default, 4, '2017-01-01', '2017-06-30');
+    insert into radar values(default, 4, '2016-07-01', '2016-12-31');
 
-insert into radar_technologies values(default, 1, 1, 1);
-insert into radar_technologies values(default, 1, 2, 2);
-insert into radar_technologies values(default, 1, 3, 3);
-insert into radar_technologies values(default, 1, 4, 4);
-insert into radar_technologies values(default, 1, 5, 1);
-insert into radar_technologies values(default, 1, 6, 2);
-insert into radar_technologies values(default, 1, 7, 3);
-insert into radar_technologies values(default, 1, 8, 4);
-insert into radar_technologies values(default, 1, 9, 1);
-insert into radar_technologies values(default, 1, 10, 2);
-insert into radar_technologies values(default, 1, 11, 3);
-insert into radar_technologies values(default, 1, 12, 4);
-insert into radar_technologies values(default, 1, 13, 5);
-insert into radar_technologies values(default, 1, 14, 1);
-insert into radar_technologies values(default, 1, 15, 2);
-insert into radar_technologies values(default, 1, 16, 3);
-insert into radar_technologies values(default, 1, 17, 4);
+    insert into radar_technologies values(default, 1, 1, 1);
+    insert into radar_technologies values(default, 1, 2, 2);
+    insert into radar_technologies values(default, 1, 3, 3);
+    insert into radar_technologies values(default, 1, 4, 4);
+    insert into radar_technologies values(default, 1, 5, 1);
+    insert into radar_technologies values(default, 1, 6, 2);
+    insert into radar_technologies values(default, 1, 7, 3);
+    insert into radar_technologies values(default, 1, 8, 4);
+    insert into radar_technologies values(default, 1, 9, 1);
+    insert into radar_technologies values(default, 1, 10, 2);
+    insert into radar_technologies values(default, 1, 11, 3);
+    insert into radar_technologies values(default, 1, 12, 4);
+    insert into radar_technologies values(default, 1, 13, 5);
+    insert into radar_technologies values(default, 1, 14, 1);
+    insert into radar_technologies values(default, 1, 15, 2);
+    insert into radar_technologies values(default, 1, 16, 3);
+    insert into radar_technologies values(default, 1, 17, 4);
 
-insert into radar_technologies values(default, 2, 1, 1);
-insert into radar_technologies values(default, 2, 2, 2);
-insert into radar_technologies values(default, 2, 3, 3);
-insert into radar_technologies values(default, 2, 4, 4);
-insert into radar_technologies values(default, 2, 5, 1);
-insert into radar_technologies values(default, 2, 6, 2);
+    insert into radar_technologies values(default, 2, 1, 1);
+    insert into radar_technologies values(default, 2, 2, 2);
+    insert into radar_technologies values(default, 2, 3, 3);
+    insert into radar_technologies values(default, 2, 4, 4);
+    insert into radar_technologies values(default, 2, 5, 1);
+    insert into radar_technologies values(default, 2, 6, 2);
 
-insert into radar_technologies values(default, 3, 31, 1);
-insert into radar_technologies values(default, 3, 32, 2);
-insert into radar_technologies values(default, 3, 33, 3);
-insert into radar_technologies values(default, 3, 34, 4);
-insert into radar_technologies values(default, 3, 35, 1);
-insert into radar_technologies values(default, 3, 36, 2);
+    insert into radar_technologies values(default, 3, 31, 1);
+    insert into radar_technologies values(default, 3, 32, 2);
+    insert into radar_technologies values(default, 3, 33, 3);
+    insert into radar_technologies values(default, 3, 34, 4);
+    insert into radar_technologies values(default, 3, 35, 1);
+    insert into radar_technologies values(default, 3, 36, 2);
 
-insert into radar_technologies values(default, 4, 37, 1);
-insert into radar_technologies values(default, 4, 38, 2);
-insert into radar_technologies values(default, 4, 39, 3);
-insert into radar_technologies values(default, 4, 31, 4);
-insert into radar_technologies values(default, 4, 32, 1);
-insert into radar_technologies values(default, 4, 33, 2);
+    insert into radar_technologies values(default, 4, 37, 1);
+    insert into radar_technologies values(default, 4, 38, 2);
+    insert into radar_technologies values(default, 4, 39, 3);
+    insert into radar_technologies values(default, 4, 31, 4);
+    insert into radar_technologies values(default, 4, 32, 1);
+    insert into radar_technologies values(default, 4, 33, 2);
 
-insert into radar_technologies values(default, 5, 61, 1);
-insert into radar_technologies values(default, 5, 62, 2);
-insert into radar_technologies values(default, 5, 63, 3);
-insert into radar_technologies values(default, 5, 64, 4);
-insert into radar_technologies values(default, 5, 65, 1);
-insert into radar_technologies values(default, 5, 66, 2);
+    insert into radar_technologies values(default, 5, 61, 1);
+    insert into radar_technologies values(default, 5, 62, 2);
+    insert into radar_technologies values(default, 5, 63, 3);
+    insert into radar_technologies values(default, 5, 64, 4);
+    insert into radar_technologies values(default, 5, 65, 1);
+    insert into radar_technologies values(default, 5, 66, 2);
 
-insert into radar_technologies values(default, 6, 67, 1);
-insert into radar_technologies values(default, 6, 68, 2);
-insert into radar_technologies values(default, 6, 69, 3);
-insert into radar_technologies values(default, 6, 70, 4);
-insert into radar_technologies values(default, 6, 59, 1);
-insert into radar_technologies values(default, 6, 71, 2);
+    insert into radar_technologies values(default, 6, 67, 1);
+    insert into radar_technologies values(default, 6, 68, 2);
+    insert into radar_technologies values(default, 6, 69, 3);
+    insert into radar_technologies values(default, 6, 70, 4);
+    insert into radar_technologies values(default, 6, 59, 1);
+    insert into radar_technologies values(default, 6, 71, 2);
 
-insert into radar_technologies values(default, 7, 90, 1);
-insert into radar_technologies values(default, 7, 91, 2);
-insert into radar_technologies values(default, 7, 92, 3);
-insert into radar_technologies values(default, 7, 93, 4);
-insert into radar_technologies values(default, 7, 94, 1);
-insert into radar_technologies values(default, 7, 95, 2);
+    insert into radar_technologies values(default, 7, 90, 1);
+    insert into radar_technologies values(default, 7, 91, 2);
+    insert into radar_technologies values(default, 7, 92, 3);
+    insert into radar_technologies values(default, 7, 93, 4);
+    insert into radar_technologies values(default, 7, 94, 1);
+    insert into radar_technologies values(default, 7, 95, 2);
 
-insert into radar_technologies values(default, 8, 96, 1);
-insert into radar_technologies values(default, 8, 97, 2);
-insert into radar_technologies values(default, 8, 98, 3);
-insert into radar_technologies values(default, 8, 99, 4);
-insert into radar_technologies values(default, 8, 100, 1);
-insert into radar_technologies values(default, 8, 101, 2);
+    insert into radar_technologies values(default, 8, 96, 1);
+    insert into radar_technologies values(default, 8, 97, 2);
+    insert into radar_technologies values(default, 8, 98, 3);
+    insert into radar_technologies values(default, 8, 99, 4);
+    insert into radar_technologies values(default, 8, 100, 1);
+    insert into radar_technologies values(default, 8, 101, 2);
 
