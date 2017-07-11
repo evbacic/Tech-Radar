@@ -440,4 +440,26 @@ ul {
     width: 15%;
     border-radius: 1px;
 }
+#unused .switches{
+    position: relative; !important;
+    visibility: visible; !important;
+    left: 0px;
+    float: right; !important;
+    opacity: 100; !important;
+}
 
+.lever{
+    height: 3em;
+}
+
+input[type='checkbox'] {
+    -webkit-appearance:none;
+    width:25px;
+    height:25px;
+    background:white;
+    border-radius:5px;
+    border:2px solid #555;
+}
+input[type='checkbox']:checked {
+    background: var(--navbar);
+}

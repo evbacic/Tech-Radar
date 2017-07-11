@@ -35,6 +35,7 @@ function generatePage(radarId){
         var cat2 = [];
         var cat3 = [];
         var cat4 = [];
+        var cat5 = [];
         $.ajax({
             url: "/api/radar",
             type: "GET",
@@ -67,6 +68,9 @@ function generatePage(radarId){
                         case 4:
                             cat4.push(temp);
                             break;
+                        case 5:
+                            cat5.push(temp);
+                            break;
                     }
                 }
                 svg = d3.select("svg");
@@ -82,6 +86,7 @@ function generatePage(radarId){
                 populateCircle(2.5, center, cat2);
                 populateCircle(3.5, center, cat3);
                 populateCircle(4.5, center, cat4);
+                populateCircle(5.5, center, cat5);
                 $("#datePicker").on("change", function () {
                     window.location.href="/home/"+temp.radar.techGroupRadar.id+"/"+$(this).val();
                 });
@@ -151,6 +156,9 @@ function addItem (x, y, temp){
             break;
         case 4:
             var listContent = "<li id='"+ temp.technology.id + "'><div class='collapsible-header outgoing'>" + temp.technology.id + ": " + temp.technology.name + "</div><div class='collapsible-body'><span>" + temp.technology.description + "</span></div></li>";
+            break;
+        case 5:
+            var listContent = "<li id='"+ temp.technology.id + "'><div class='collapsible-header'>" + temp.technology.id + ": " + temp.technology.name + "</div><div class='collapsible-body'><span>" + temp.technology.description + "</span></div></li>";
             break;
     }
 
