@@ -22,6 +22,9 @@ function generatePage(radarId) {
                         case 4:
                             $("#hold").append("<li class='collection-item outgoing' id='" + resultData[i].technology.id + "'>" + resultData[i].technology.name + "</li>");
                             break;
+                        case 5:
+                            $("#unused").append("<li class='collection-item outdated' id='" + resultData[i].technology.id + "'>" + resultData[i].technology.name + "<label class='lever righty' ><input id='check" + resultData[i].technology.id + "' checked type='checkbox' class='switches'></label></li>");
+                            break;
                     }
                 }
             }
@@ -32,7 +35,12 @@ function generatePage(radarId) {
                 success: function(techData) {
                     for(var i = 0; i<techData.length; i++){
                         if(!(document.getElementById(techData[i].id)) && techData[i].techGroup.id === group){
-                            $("#unused").append("<li class='collection-item outdated' id='" + techData[i].id + "'>" + techData[i].name + "<label class='lever righty' ><input id='check' type='checkbox' class='switches'></label><i title='Delete' class='material-icons righty deletes' style='cursor: pointer'>delete_forever</i></li>");
+                            if(techData[i].catId === 5){
+                                $("#unused").append("<li class='collection-item outdated' id='" + techData[i].id + "'>" + techData[i].name + "<label class='lever righty' ><input id='check" + techData[i].id + "' checked type='checkbox' class='switches'></label><i title='Delete' class='material-icons righty deletes' style='cursor: pointer'>delete_forever</i></li>");
+                            } else {
+                                $("#unused").append("<li class='collection-item outdated' id='" + techData[i].id + "'>" + techData[i].name + "<label class='lever righty' ><input id='check" + techData[i].id + "' type='checkbox' class='switches'></label><i title='Delete' class='material-icons righty deletes' style='cursor: pointer'>delete_forever</i></li>");
+                            }
+
                         }
                     }
                     $(".deletes").each(function () {
@@ -134,16 +142,10 @@ function sendData(radarId){
                data.push(new Object({id: $(this).attr("id"), catId: 4, radId: radarId}));
                break;
            case "unused":
-               var inputElements = document.getElementsByClassName('switches');/// Radi samo za zadnji
-               // for(var i=0; inputElements[i]; ++i) {
-               if ($(this).find('switches').checked) {
-                   if(inputElements[i].checked){
-                       data.push(new Object({id: $(this).attr("id"), catId: 5, radId: radarId}));
-                       console.log($(this).find("switches").checked);
-                   } else {
-                       data.push(new Object({id: $(this).attr("id"), catId: 0, radId: radarId}));
-                       console.log($(this).find("switches").checked);
-                   }
+               if (document.getElementById("check"+$(this).attr("id")).checked) {
+                   data.push(new Object({id: $(this).attr("id"), catId: 5, radId: radarId}));
+               } else {
+                   data.push(new Object({id: $(this).attr("id"), catId: 0, radId: radarId}));
                }
                break;
        }
