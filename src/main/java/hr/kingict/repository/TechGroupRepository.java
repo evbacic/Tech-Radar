@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 /**
- * Created by luka.crnjakovic on 5.6.2017..
+ * A Spring repository interface which works with TechGroup entities
  */
 @Repository
 public interface TechGroupRepository extends JpaRepository<TechGroup, Long> {

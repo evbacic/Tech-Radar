@@ -1,9 +1,5 @@
 package hr.kingict;
 
-/**
- * Created by emil-vid.bacic on 26.6.2017..
- */
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -12,9 +8,16 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 import javax.sql.DataSource;
 
+/**
+ * A configuration class which establishes rules for accessing certain views.
+ * It configures admin users which have access to a higher lever of functionality
+ */
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    /**
+     * A DataSource object used to access user information from database
+     */
     @Autowired
     DataSource dataSource;
 

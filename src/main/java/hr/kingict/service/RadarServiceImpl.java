@@ -10,15 +10,25 @@ import java.sql.Date;
 import java.util.List;
 
 /**
- * Created by luka.crnjakovic on 10.7.2017..
+ * A class which is an implementation of RadarService interface
  */
 @Component("radarService")
 public class RadarServiceImpl implements RadarService{
 
+    /**
+     * RadarRepository object used to access Radar information from the data access layer
+     */
     private final RadarRepository radarRepository;
-
+    /**
+     * TechGroupRepository object used to access TechGroup information from the data access layer
+     */
     private final TechGroupRepository techGroupRepository;
 
+    /**
+     * A constructor with parameters for implementation of RadarService
+     * @param radarRepository RadarRepository object
+     * @param techGroupRepository TechGroupRepository object
+     */
     public RadarServiceImpl(RadarRepository radarRepository, TechGroupRepository techGroupRepository) {
         this.radarRepository = radarRepository;
         this.techGroupRepository = techGroupRepository;

@@ -9,15 +9,25 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 /**
- * Created by luka.crnjakovic on 10.7.2017..
+ * A class which is an implementation of TechnologyService interface
  */
 @Component("technologyService")
 public class TechnologyServiceImpl implements TechnologyService {
 
+    /**
+     * TechnologyRepository object used to access Technology information from the data access layer
+     */
     private final TechnologyRepository technologyRepository;
-
+    /**
+     * RadarRepository object used to access Radar information from the data access layer
+     */
     private final RadarRepository radarRepository;
 
+    /**
+     * A constructor with parameters for implementation of TechnologyService
+     * @param technologyRepository TechnologyRepository object
+     * @param radarRepository RadarRepository object
+     */
     public TechnologyServiceImpl(TechnologyRepository technologyRepository, RadarRepository radarRepository) {
         this.technologyRepository = technologyRepository;
         this.radarRepository = radarRepository;

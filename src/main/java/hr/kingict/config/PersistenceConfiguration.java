@@ -14,7 +14,7 @@ public class PersistenceConfiguration {
 
     /**
      * A method which creates the data source needed to run the app
-     * based on the given application properties
+     * based on given application properties
      * @return a DataSource object which will be used by the app in order to access the database
      */
     @Bean

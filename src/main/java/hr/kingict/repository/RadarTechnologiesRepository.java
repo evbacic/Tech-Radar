@@ -8,11 +8,17 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 /**
- * Created by luka.crnjakovic on 5.7.2017..
+ * A Spring repository interface which works with RadarTechnologies entities
  */
 @Repository
 public interface RadarTechnologiesRepository extends JpaRepository<RadarTechnologies, Long>{
 
+    /**
+     * A method which gets the RadarTechnologies object with specified Technology and Radar value (their respective ids)
+     * @param  t Technology object
+     * @param  r Radar object
+     * @return RadarTechnologies object
+     */
     @Query("SELECT rt from RadarTechnologies rt where rt.technology = ?1 and rt.radar = ?2")
     RadarTechnologies findByParams(Technology t, Radar r);
 }

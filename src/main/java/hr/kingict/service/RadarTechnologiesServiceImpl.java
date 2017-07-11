@@ -12,17 +12,35 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 /**
- * Created by luka.crnjakovic on 10.7.2017..
+ * A class which is an implementation of RadarTechnologiesService interface
  */
 @Component("radarTechnologiesService")
 public class RadarTechnologiesServiceImpl implements RadarTechnologiesService{
 
+    /**
+     * RadarTechnologiesRepository object used to access RadarTechnologies information from the data access layer
+     */
     private final RadarTechnologiesRepository radarTechnologiesRepository;
+    /**
+     * RadarRepository object used to access Radar information from the data access layer
+     */
     private final RadarRepository radarRepository;
+    /**
+     * TechnologyRepository object used to access Technology information from the data access layer
+     */
     private final TechnologyRepository technologyRepository;
+    /**
+     * CategoryRepository object used to access Category information from the data access layer
+     */
     private final CategoryRepository categoryRepository;
 
-
+    /**
+     * A constructor with parameters for implementation of RadarTechnologiesService
+     * @param radarTechnologiesRepository RadarTechnologiesRepository object
+     * @param radarRepository RadarRepository object
+     * @param technologyRepository TechnologyRepository object
+     * @param categoryRepository CategoryRepository object
+     */
     public RadarTechnologiesServiceImpl(RadarTechnologiesRepository radarTechnologiesRepository, RadarRepository radarRepository, TechnologyRepository technologyRepository, CategoryRepository categoryRepository) {
         this.radarTechnologiesRepository = radarTechnologiesRepository;
         this.radarRepository = radarRepository;
@@ -40,7 +58,7 @@ public class RadarTechnologiesServiceImpl implements RadarTechnologiesService{
         for(int i = 0; i<updateList.size(); i++){
             Radar r = radarRepository.findOne(updateList.get(i).getRadId());
             if(r==null){
-                r = radarRepository.findRecentById().get(0);
+                r = radarRepository.findRecentById();
             }
             RadarTechnologies rt = radarTechnologiesRepository.findByParams(technologyRepository.findOne(updateList.get(i).getId()), r);
             if(rt!=null){
