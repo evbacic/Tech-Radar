@@ -2,7 +2,6 @@ package hr.kingict.service;
 
 import hr.kingict.model.NewRadar;
 import hr.kingict.model.Radar;
-import hr.kingict.model.TechGroup;
 
 import java.sql.Date;
 import java.util.List;
